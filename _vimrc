@@ -1,88 +1,109 @@
+"文件编码
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1 "文件编码检查
-set encoding=utf-8 "vim内部编码
-set fileencoding=utf-8 "保存时,文件的编码格式
-set termencoding=cp936 "终端编码
+set encoding=utf-8               "vim内部编码
+set fileencoding=utf-8           "保存时,文件的编码格式
+set termencoding=cp936           "终端编码
 language messages zh_CN.UTF-8
 
-set nocompatible
-set guifont=Consolas:h12
-set sw=2             "缩进值
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
-colorscheme doriath "corporation desertEx
-set nocompatible      " 关闭 vi 兼容模式
-syntax on         " 自动语法高亮
-colorscheme desertEx    " 设定配色方案
-set number          " 显示行号
-"set cursorline        " 突出显示当前行
-set ruler         " 打开状态栏标尺
-"set shiftwidth=4      " 设定 << 和 >> 命令移动时的宽度为 4
-"set softtabstop=4       " 使得按退格键时可以一次删掉 4 个空格
-"set tabstop=4       " 设定 tab 长度为 4
-set nobackup        " 覆盖文件时不备份
-set autochdir       " 自动切换当前目录为当前文件所在的目录
-filetype plugin indent on " 开启插件
-set backupcopy=yes      " 设置备份时的行为为覆盖
-set ignorecase smartcase  " 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
-set nowrapscan        " 禁止在搜索到文件两端时重新搜索
-set incsearch       " 输入搜索内容时就显示搜索结果
-set hlsearch        " 搜索时高亮显示被找到的文本
-set noerrorbells      " 关闭错误信息响铃
-set novisualbell      " 关闭使用可视响铃代替呼叫
-set t_vb=         " 置空错误铃声的终端代码
-" set showmatch         " 插入括号时，短暂地跳转到匹配的对应括号
-" set matchtime=2       " 短暂跳转到匹配括号的时间
-"set magic           " 设置魔术
-"set hidden          " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
-set guioptions-=T     " 隐藏工具栏
-"set guioptions-=m       " 隐藏菜单栏
-set smartindent       " 开启新行时使用智能自动缩进
-set backspace=indent,eol,start
-" 不设定在插入状态无法用退格键和 Delete 键删除回车符
-set cmdheight=1       " 设定命令行的行数为 1
-set laststatus=2      " 显示状态栏 (默认值为 1, 无法显示状态栏)
-set foldenable        " 开始折叠
-set foldmethod=syntax   " 设置语法折叠
-set foldcolumn=0      " 设置折叠区域的宽度
-setlocal foldlevel=1    " 设置折叠层数为
-"set completeopt=longest,menu "即时显示自动提示
-" set foldclose=all       " 设置为自动关闭折叠                
-" nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-" 用空格键来开关折叠
-set smarttab
-set lbr
-set tw=0
-"Auto indent
-set ai
-" Smart indet
-set si
-" C-style indeting
-set cindent
-" Wrap lines
-set wrap
 
-set expandtab " 使用space代替tab. 
+set nocompatible
+set nocompatible                      " 关闭 vi 兼容模式
+syntax on                             " 自动语法高亮
+filetype plugin indent on             " 开启插件
+filetype on                           " 自动检查文件类型
 
-:auto BufNewFile  * retab! 2
-:auto BufReadPost * retab! 2
-:auto BufWritePre * retab! 2 
-:auto BufWritePost  * retab! 2
+"显示
+set guifont=Monaco:h10                " 字体和字号
+colorscheme desertEx                  " 设定配色方案
+set number                            " 显示行号
+"set cursorline                       " 突出显示当前行
+set wrap                              " 设置折行
+set linebreak                         " 设置智能判断折行
+set ruler                             " 打开状态栏标尺
+set guioptions-=T                     " 隐藏工具栏
+"set guioptions-=m                    " 隐藏菜单栏
 
-au FileType html,css,php,java,python,vim,javascript setl shiftwidth=2
-au FileType html,css,php,java,python,vim,javascript setl tabstop=2
+"缩进
+set expandtab                         " 使用space代替tab. 
+set smarttab                          " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
+set smartindent                       " 开启新行时使用智能自动缩进
+set shiftwidth=2                      " 每一级缩进是多少个空格
+set softtabstop=2                     " 使得按退格键时可以一次删掉 2 个空格
+set tabstop=2                         " 设定 tab 长度
+set autoindent                        " Auto indent
+set cindent                           " C-style indeting
+
+"文件和目录
+set nobackup                          " 覆盖文件时不备份
+set backupcopy=yes                    " 设置备份时的行为为覆盖
+set autochdir                         " 自动切换当前目录为当前文件所在的目录
+
+"搜索
+set ignorecase smartcase              " 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
+set nowrapscan                        " 禁止在搜索到文件两端时重新搜索
+set incsearch                         " 输入搜索内容时就显示搜索结果
+set hlsearch                          " 搜索时高亮显示被找到的文本
+
+"声音
+set noerrorbells                      " 关闭错误信息响铃
+set novisualbell                      " 关闭使用可视响铃代替呼叫
+set t_vb=                             " 置空错误铃声的终端代码
+
+"set showmatch                       " 插入括号时，短暂地跳转到匹配的对应括号
+"set matchtime=2                     " 短暂跳转到匹配括号的时间
+"set magic                            " 设置魔术 magic (\m)：除了 $ . * ^ 之外其他元字符都要加反斜杠。nomagic (\M)：除了 $ ^ 之外其他元字符都要加反斜杠。
+"set hidden                           " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
+set backspace=indent,eol,start        " 不设定在插入状态无法用退格键和 Delete 键删除回车符
+set cmdheight=1                       " 设定命令行的行数为 1
+set laststatus=2                      " 显示状态栏 (默认值为 1, 无法显示状态栏)
+
+"折叠
+set foldenable                        " 开始折叠
+set foldmethod=syntax                 " 设置语法折叠
+set foldcolumn=0                      " 设置折叠区域的宽度
+setlocal foldlevel=1                  " 设置折叠层数为
+set completeopt=longest,menu          " 即时显示自动提示
+" set foldclose=all                   " 设置为自动关闭折叠                
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>   " 用空格键来开关折叠
+
+
+"vim自带补全插件
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+"自动把文件内的tab转换成空格
+":auto BufNewFile  * retab! 2
+":auto BufReadPost * retab! 2
+":auto BufWritePre * retab! 2 
+":auto BufWritePost  * retab! 2
 
 au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
-let b:javascript_fold=1  "开启折叠      javascript插件设置
-let g:js_indent_log = 0 "js html indent插件设置
-let javascript_enable_domhtmlcss=1    "启用对dom,html,css高亮支持 javascript插件设置
-let loaded_matchit = 1 "开启语法匹配插件
+"javascript插件设置
+let b:javascript_fold=1  "开启折叠
+"
+"js html indent插件设置
+let g:js_indent_log = 0 
 
-set t_Co=256 "cssColor
+"javascript插件设置
+let javascript_enable_domhtmlcss=1 "启用对dom,html,css高亮支持
+
+"开启语法匹配插件
+let loaded_matchit = 1
+
+"ListTag设置
+let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
+let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗口 
+let tlist_js_settings = 'javascript;s:string;a:array;o:object;f:function'
+
+"cssColor
+set t_Co=256
 
 set tags=tags;
 set autochdir
-filetype on "taglist配置
 
 map <F3> :tabprevious<CR>
 map <F4> :tabnext<CR>
