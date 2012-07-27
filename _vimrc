@@ -16,7 +16,7 @@ filetype on                           " 自动检查文件类型
 
 "显示
 set guifont=Monaco:h10                " 字体和字号
-colorscheme desertEx                  " 设定配色方案
+colorscheme vibrantink                  " 设定配色方案
 set number                            " 显示行号
 "set cursorline                       " 突出显示当前行
 set wrap                              " 设置折行
@@ -26,12 +26,12 @@ set guioptions-=T                     " 隐藏工具栏
 "set guioptions-=m                    " 隐藏菜单栏
 
 "缩进
-set expandtab                         " 使用space代替tab. 
+set expandtab                         " 使用space代替tab.
 set smarttab                          " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
 set smartindent                       " 开启新行时使用智能自动缩进
-set shiftwidth=2                      " 每一级缩进是多少个空格
-set softtabstop=2                     " 使得按退格键时可以一次删掉 2 个空格
-set tabstop=2                         " 设定 tab 长度
+set shiftwidth=4                      " 每一级缩进是多少个空格
+set softtabstop=4                     " 使得按退格键时可以一次删掉 4 个空格
+set tabstop=4                         " 设定 tab 长度
 set autoindent                        " Auto indent
 set cindent                           " C-style indeting
 
@@ -65,27 +65,28 @@ set foldmethod=syntax                 " 设置语法折叠
 set foldcolumn=0                      " 设置折叠区域的宽度
 setlocal foldlevel=1                  " 设置折叠层数为
 set completeopt=longest,menu          " 即时显示自动提示
-" set foldclose=all                   " 设置为自动关闭折叠                
+" set foldclose=all                   " 设置为自动关闭折叠
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>   " 用空格键来开关折叠
 
+"80字符限制
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%80v.*/
 
 "vim自带补全插件
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 "自动把文件内的tab转换成空格
-":auto BufNewFile  * retab! 2
-":auto BufReadPost * retab! 2
-":auto BufWritePre * retab! 2 
-":auto BufWritePost  * retab! 2
+":auto BufNewFile  * retab! 4
+":auto BufReadPost * retab! 4
+":auto BufWritePre * retab! 4
+":auto BufWritePost  * retab! 4
 
-au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+au BufRead,BufNewFile jquery.*.js set ft=jquery
+au! BufRead,BufNewFile *.json set filetype=javascript
 
-"javascript插件设置
-let b:javascript_fold=1  "开启折叠
-"
 "js html indent插件设置
-let g:js_indent_log = 0 
+let g:js_indent_log = 0
 
 "javascript插件设置
 let javascript_enable_domhtmlcss=1 "启用对dom,html,css高亮支持
@@ -94,22 +95,44 @@ let javascript_enable_domhtmlcss=1 "启用对dom,html,css高亮支持
 let loaded_matchit = 1
 
 "ListTag设置
-let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
-let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
-let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗口 
+let Tlist_Show_One_File = 1         "不同时显示多个文件的tag，只显示当前文件的
+let Tlist_Exit_OnlyWindow = 1       "如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Use_Right_Window = 1      "在右侧窗口中显示taglist窗口
 let tlist_js_settings = 'javascript;s:string;a:array;o:object;f:function'
 
-"cssColor
-set t_Co=256
+"IndentGuides
+let g:indent_guides_guide_size=1
+map gi :IndentGuidesToggle<cr>
 
-set tags=tags;
-set autochdir
+"高亮当前列
+map <Leader>c :call SetColorColumn()<CR>
+function! SetColorColumn()
+    let col_num = virtcol(".")
+    let cc_list = split(&cc, ',')
+    if count(cc_list, string(col_num)) <= 0
+        execute "set cc+=".col_num
+    else
+        execute "set cc-=".col_num
+    endif
+endfunction
 
-map <F3> :tabprevious<CR>
-map <F4> :tabnext<CR>
-map nt   :NERDTree<CR>
-map <F11> :w<CR>:!python %<CR>
+"MRU窗口
 map <F3> :MRU<CR><CR>
+
+"窗口切换
+"map <F4> <C-w>h
+"map <F5> <C-w>j
+"map <F6> <C-w>k
+"map <F7> <C-w>l
+
+"Python 编译
+map <F11> :w<CR>:!python %<CR>
+
+"NERDTree快捷键
+map nt   :NERDTree<CR>
+
+" 删除所有行未尾空格
+map <F12> :%s/[ \t\r]\+$//g<cr>
 
 " 插入匹配括号
 inoremap ( ()<LEFT>
@@ -118,8 +141,7 @@ inoremap { {}<LEFT><CR><ESC>O<tab>
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
 inoremap < <><LEFT>
-" 删除所有行未尾空格
-nnoremap <F12> :%s/[ \t\r]\+$//g<cr>
+
 
 set diffexpr=MyDiff()
 function MyDiff()
@@ -146,6 +168,4 @@ function MyDiff()
     silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
-"80字符限制
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%80v.*/ 
+
