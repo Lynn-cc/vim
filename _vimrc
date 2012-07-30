@@ -15,8 +15,9 @@ filetype plugin indent on             " 开启插件
 filetype on                           " 自动检查文件类型
 
 "显示
-set guifont=Monaco:h10                " 字体和字号
-colorscheme vibrantink                  " 设定配色方案
+set guifontwide=YouYuan:h11:cGB2312   " 中文等宽字体
+set guifont=Monaco:h11                " 字体和字号
+colorscheme vibrantink                " 设定配色方案
 set number                            " 显示行号
 "set cursorline                       " 突出显示当前行
 set wrap                              " 设置折行
@@ -104,8 +105,10 @@ let tlist_js_settings = 'javascript;s:string;a:array;o:object;f:function'
 let g:indent_guides_guide_size=1
 map gi :IndentGuidesToggle<cr>
 
+nmap <Leader>c <Plug>Colorizer
+
 "高亮当前列
-map <Leader>c :call SetColorColumn()<CR>
+map <Leader>h :call SetColorColumn()<CR>
 function! SetColorColumn()
     let col_num = virtcol(".")
     let cc_list = split(&cc, ',')
@@ -117,7 +120,7 @@ function! SetColorColumn()
 endfunction
 
 "MRU窗口
-map <F3> :MRU<CR><CR>
+map <F3> :MRU<CR>
 
 "窗口切换
 "map <F4> <C-w>h
@@ -167,5 +170,3 @@ function MyDiff()
     endif
     silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
-
-
