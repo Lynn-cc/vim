@@ -19,12 +19,12 @@ set guifontwide=YouYuan:h11:cGB2312   " 中文等宽字体
 set guifont=Monaco:h11                " 字体和字号
 colorscheme vibrantink                " 设定配色方案
 set number                            " 显示行号
-"set cursorline                       " 突出显示当前行
+set cursorline                        " 突出显示当前行
 set wrap                              " 设置折行
 set linebreak                         " 设置智能判断折行
 set ruler                             " 打开状态栏标尺
 set guioptions-=T                     " 隐藏工具栏
-"set guioptions-=m                    " 隐藏菜单栏
+set guioptions-=m                    " 隐藏菜单栏
 
 "缩进
 set expandtab                         " 使用space代替tab.
@@ -66,7 +66,7 @@ set foldmethod=syntax                 " 设置语法折叠
 set foldcolumn=0                      " 设置折叠区域的宽度
 setlocal foldlevel=1                  " 设置折叠层数为
 set completeopt=longest,menu          " 即时显示自动提示
-" set foldclose=all                   " 设置为自动关闭折叠
+"set foldclose=all                    " 设置为自动关闭折叠
 
 
 " 用空格键来开关折叠
@@ -106,21 +106,20 @@ let tlist_js_settings = 'javascript;s:string;a:array;o:object;f:function'
 
 "IndentGuides
 let g:indent_guides_guide_size=1
-map gi :IndentGuidesToggle<cr>
+map gi :IndentGuidesToggle<CR>
 
+"host快捷注释和取消
+nmap <leader>z <ESC>0i#<ESC>:w<CR>
+nmap <leader>q <ESC>0x:w<CR>
+
+"快捷载入vimrc
+nmap <leader>sv <ESC>:source $vim/_vimrc<CR>
+
+"高亮颜色字串
 nmap <Leader>c <Plug>Colorizer
 
 "高亮当前列
-map <Leader>h :call SetColorColumn()<CR>
-function! SetColorColumn()
-    let col_num = virtcol(".")
-    let cc_list = split(&cc, ',')
-    if count(cc_list, string(col_num)) <= 0
-        execute "set cc+=".col_num
-    else
-        execute "set cc-=".col_num
-    endif
-endfunction
+nmap <Leader>h :call SetColorColumn()<CR>
 
 "MRU窗口
 map <F3> :MRU<CR>
@@ -172,4 +171,15 @@ function MyDiff()
         let cmd = $VIMRUNTIME . '\diff'
     endif
     silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+endfunction
+
+"高亮当前列函数
+function! SetColorColumn()
+    let col_num = virtcol(".")
+    let cc_list = split(&cc, ',')
+    if count(cc_list, string(col_num)) <= 0
+        execute "set cc+=".col_num
+    else
+        execute "set cc-=".col_num
+    endif
 endfunction
