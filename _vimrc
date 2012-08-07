@@ -19,12 +19,12 @@ set guifontwide=YouYuan:h11:cGB2312   " 中文等宽字体
 set guifont=Monaco:h11                " 字体和字号
 colorscheme vibrantink                " 设定配色方案
 set number                            " 显示行号
-set cursorline                        " 突出显示当前行
+"set cursorline                       " 突出显示当前行
 set wrap                              " 设置折行
 set linebreak                         " 设置智能判断折行
 set ruler                             " 打开状态栏标尺
 set guioptions-=T                     " 隐藏工具栏
-set guioptions-=m                    " 隐藏菜单栏
+set guioptions-=m                     " 隐藏菜单栏
 
 "缩进
 set expandtab                         " 使用space代替tab.
@@ -99,6 +99,7 @@ let javascript_enable_domhtmlcss=1 "启用对dom,html,css高亮支持
 let loaded_matchit = 1
 
 "ListTag设置
+nmap <leader>l :Tlist<CR>
 let Tlist_Show_One_File = 1         "不同时显示多个文件的tag，只显示当前文件的
 let Tlist_Exit_OnlyWindow = 1       "如果taglist窗口是最后一个窗口，则退出vim
 let Tlist_Use_Right_Window = 1      "在右侧窗口中显示taglist窗口
@@ -130,8 +131,12 @@ map <F3> :MRU<CR>
 "map <F6> <C-w>k
 "map <F7> <C-w>l
 
-"Python 编译
+"Python编译
 map <F11> :w<CR>:!python %<CR>
+
+"markdown
+nnoremap <F10> :!python "c:\Program Files\Python\Scripts\markdown.py" %:t -e chinese > %:r.html<CR> 
+noremap \e  :!cmd /c start %:r.html<CR>
 
 "NERDTree快捷键
 map nt   :NERDTree<CR>
