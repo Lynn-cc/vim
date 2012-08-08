@@ -1,9 +1,9 @@
 "文件编码
-set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1 "文件编码检查
+set fileencodings=ucs-bom,utf-8,gbk,cp936,gb18030,big5,euc-jp,euc-kr,latin1 "文件编码检查
 set encoding=utf-8               "vim内部编码
 set fileencoding=utf-8           "保存时,文件的编码格式
-"set termencoding=cp936           "终端编码
-language messages zh_CN.UTF-8
+set termencoding=utf-8           "终端编码
+language messages zh_CN.UTF-8    "提示信息中文
 
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
