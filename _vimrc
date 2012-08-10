@@ -17,7 +17,7 @@ filetype on                           " 自动检查文件类型
 "显示
 set guifontwide=YouYuan:h11:cGB2312   " 中文等宽字体
 set guifont=Monaco:h11                " 字体和字号
-colorscheme vibrantink                " 设定配色方案
+colorscheme myMonakai                  " 设定配色方案
 set number                            " 显示行号
 "set cursorline                       " 突出显示当前行
 set wrap                              " 设置折行
@@ -110,11 +110,12 @@ let g:indent_guides_guide_size=1
 map gi :IndentGuidesToggle<CR>
 
 "host快捷注释和取消
-nmap <leader>z <ESC>0i#<ESC>:w<CR>
-nmap <leader>q <ESC>0x:w<CR>
+nmap <leader>j <ESC>0i#<ESC>:w<CR>
+nmap <leader>qj <ESC>0x:w<CR>
 
-"快捷载入vimrc
-nmap <leader>sv <ESC>:source $vim/_vimrc<CR>
+"快捷载入/打开vimrc
+nmap <leader>s <ESC>:source $vim/_vimrc<CR>
+nmap <leader>z <ESC>:vnew $vim/_vimrc<CR>
 
 "高亮颜色字串
 nmap <Leader>c <Plug>Colorizer
@@ -139,7 +140,7 @@ nnoremap <F10> :!python "c:\Program Files\Python\Scripts\markdown.py" %:t -e chi
 noremap \e  :!cmd /c start %:r.html<CR>
 
 "NERDTree快捷键
-map nt   :NERDTree<CR>
+map nt :NERDTree<CR>
 
 " 删除所有行未尾空格
 map <F12> :%s/[ \t\r]\+$//g<cr>
