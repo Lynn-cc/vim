@@ -52,8 +52,8 @@ set noerrorbells                      " 关闭错误信息响铃
 set novisualbell                      " 关闭使用可视响铃代替呼叫
 set t_vb=                             " 置空错误铃声的终端代码
 
-"set showmatch                       " 插入括号时，短暂地跳转到匹配的对应括号
-"set matchtime=2                     " 短暂跳转到匹配括号的时间
+"set showmatch                        " 插入括号时，短暂地跳转到匹配的对应括号
+"set matchtime=2                      " 短暂跳转到匹配括号的时间
 "set magic                            " 设置魔术 magic (\m)：除了 $ . * ^ 之外其他元字符都要加反斜杠。nomagic (\M)：除了 $ ^ 之外其他元字符都要加反斜杠。
 "set hidden                           " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
 set backspace=indent,eol,start        " 不设定在插入状态无法用退格键和 Delete 键删除回车符
@@ -70,11 +70,14 @@ set completeopt=longest,menu          " 即时显示自动提示
 
 
 " 用空格键来开关折叠
-nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>   
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 "80字符限制
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%80v.*/
+
+"highlight tailBlack ctermbg=red guibg=#888
+"match tailBlack /[ \t\r]\+$/
 
 "vim自带补全插件
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -107,11 +110,17 @@ let tlist_js_settings = 'javascript;s:string;a:array;o:object;f:function'
 
 "IndentGuides
 let g:indent_guides_guide_size=1
-map gi :IndentGuidesToggle<CR>
+map gi :call indent_guides#toggle()<CR>
+
+"Bookmark
+map <silent> bb :ToggleBookmark<CR>
+map <silent> bn :NextBookmark<CR>
+map <silent> bp :PreviousBookmark<CR>
+let g:bookmarking_menu = 1
 
 "host快捷注释和取消
-nmap <leader>j <ESC>0i#<ESC>:w<CR>
-nmap <leader>qj <ESC>0x:w<CR>
+nmap zs <ESC>0i#<ESC>:w<CR>
+nmap zx <ESC>0x:w<CR>
 
 "快捷载入/打开vimrc
 nmap <leader>s <ESC>:source $vim/_vimrc<CR>
@@ -136,7 +145,7 @@ map <F3> :MRU<CR>
 map <F11> :w<CR>:!python %<CR>
 
 "markdown
-nnoremap <F10> :!python "c:\Program Files\Python\Scripts\markdown.py" %:t -e chinese > %:r.html<CR> 
+nnoremap <F10> :!python "c:\Program Files\Python\Scripts\markdown.py" %:t -e chinese > %:r.html<CR>
 noremap \e  :!cmd /c start %:r.html<CR>
 
 "NERDTree快捷键
