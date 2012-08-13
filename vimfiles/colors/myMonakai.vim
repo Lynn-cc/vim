@@ -35,10 +35,10 @@ if has("gui_running")
 
     highlight Constant guifg=#66FF00
     highlight String guifg=#ffd800
-    highlight Character guifg=#AE81FF
+    highlight Character guifg=#66FF00
     highlight Number guifg=#AE81FF
     highlight Float guifg=#66FF00
-    highlight Boolean guifg=#66FF00
+    highlight Boolean guifg=#AE81FF
 
     highlight Identifier guifg=#66ff00 gui=NONE
     highlight Function guifg=#66D9EF gui=NONE
@@ -55,7 +55,7 @@ if has("gui_running")
     highlight StorageClass guifg=#A6E22E gui=NONE
     highlight structure guifg=#66D9EF gui=NONE
 
-    highlight Special guifg=#AAAAAA gui=NONE
+    highlight Special guifg=#A6E22E gui=NONE
     highlight Tag guifg=#F92672 gui=NONE
 
     highlight rubySymbol guifg=#339999 gui=NONE
@@ -65,6 +65,7 @@ if has("gui_running")
     highlight Constant guifg=#FFEE98
     highlight Search guibg=#bbbbbb guifg=#004e57
 "    highlight CursorLine guibg=#666633
+
 else
     set t_Co=256
     highlight Normal ctermfg=White ctermbg=Black 
