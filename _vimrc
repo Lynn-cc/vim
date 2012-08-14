@@ -76,8 +76,8 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%80v.*/
 
-"highlight tailBlack ctermbg=red guibg=#888
-"match tailBlack /[ \t\r]\+$/
+highlight tailBlack ctermbg=red guibg=#888
+match tailBlack /[ \t\r]\+$/
 
 "vim自带补全插件
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -150,6 +150,7 @@ noremap \e  :!cmd /c start %:r.html<CR>
 
 "NERDTree快捷键
 map nt :NERDTree<CR>
+let g:NERDTreeWinSize=20
 
 " 删除所有行未尾空格
 map <F12> :%s/[ \t\r]\+$//g<cr>
@@ -196,5 +197,5 @@ function! SetColorColumn()
         execute "set cc+=".col_num
     else
         execute "set cc-=".col_num
-    endif
+   endif
 endfunction
