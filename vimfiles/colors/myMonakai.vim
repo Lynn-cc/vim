@@ -28,43 +28,46 @@ let g:colors_name = "vibrantink"
 
 if has("gui_running")
 
-    highlight Normal guifg=White   guibg=Black
-    highlight Cursor guifg=Black   guibg=White
+    highlight Normal guifg=#c0c0c0   guibg=#111111
+    highlight Cursor guifg=Black   guibg=#c0c0c0
 
     highlight Comment guifg=#75715E
 
-    highlight Constant guifg=#66FF00
-    highlight String guifg=#ffd800
-    highlight Character guifg=#66FF00
+    highlight Constant guifg=#FFEE98
+    highlight String guifg=#FFD800
+    highlight Character guifg=#FFD800
     highlight Number guifg=#AE81FF
-    highlight Float guifg=#66FF00
+    highlight Float guifg=#FFD800
     highlight Boolean guifg=#AE81FF
 
-    highlight Identifier guifg=#66ff00 gui=NONE
+    highlight Identifier guifg=#66FF00 gui=NONE
     highlight Function guifg=#66D9EF gui=NONE
 
-    highlight Statement guifg=#ff0962 gui=NONE
-    highlight Keyword guifg=#ff0962
-    highlight Operator guifg=#ff0962
+    highlight Statement guifg=#FF0962 gui=NONE
+    highlight Keyword guifg=#FF0962
+    highlight Operator guifg=#FF0962
 
     highlight PreProc guifg=#AE81FF gui=NONE
     highlight Include guifg=#AE81FF gui=NONE
-    highlight Define guifg=#ff0962
+    highlight Define guifg=#FF0962
 
-    highlight Type guifg=#48e2ff gui=NONE
-    highlight StorageClass guifg=#A6E22E gui=NONE
+    highlight Type guifg=#48e2FF gui=NONE
+    highlight StorageClass guifg=#48e2FF gui=NONE
     highlight structure guifg=#66D9EF gui=NONE
 
     highlight Special guifg=#A6E22E gui=NONE
     highlight Tag guifg=#F92672 gui=NONE
 
+    highlight! link Title Normal
     highlight rubySymbol guifg=#339999 gui=NONE
     highlight rubyStringDelimiter guifg=#66FF00
     highlight rubyInterpolation guifg=White
     highlight rubyPseudoVariable guifg=#339999
-    highlight Constant guifg=#FFEE98
     highlight Search guibg=#bbbbbb guifg=#004e57
 "    highlight CursorLine guibg=#666633
+
+    "垂直分割线
+    highlight VertSplit guibg=#000000 guifg=#555555
 
 else
     set t_Co=256
