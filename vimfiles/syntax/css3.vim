@@ -274,7 +274,7 @@ if version >= 508 || !exists("did_css_syn_inits")
     HiLink cssIdentifier Function
     HiLink cssInclude Include
     HiLink cssImportant Special
-    HiLink cssBraces Function
+    HiLink cssBraces Normal
     HiLink cssBraceError Error
     HiLink cssError Error
     HiLink cssInclude Include
