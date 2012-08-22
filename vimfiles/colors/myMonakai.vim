@@ -34,36 +34,32 @@ if has("gui_running")
     highlight Comment guifg=#75715E
 
     highlight Constant guifg=#FFEE98
-    highlight String guifg=#FFD800
-    highlight Character guifg=#FFD800
+    highlight String guifg=#E6DB74
+    highlight Character guifg=#E6DB74
     highlight Number guifg=#AE81FF
-    highlight Float guifg=#FFD800
+    highlight Float guifg=#E6DB74
     highlight Boolean guifg=#AE81FF
 
     highlight Identifier guifg=#66FF00 gui=NONE
-    highlight Function guifg=#66D9EF gui=NONE
+    highlight Function guifg=#48E2FF gui=NONE
 
     highlight Statement guifg=#FF0962 gui=NONE
-    highlight Keyword guifg=#FF0962
-    highlight Operator guifg=#FF0962
+    highlight Keyword guifg=#A6E22E
+    highlight Operator guifg=#A6E22E
 
-    highlight PreProc guifg=#AE81FF gui=NONE
-    highlight Include guifg=#AE81FF gui=NONE
-    highlight Define guifg=#FF0962
+    highlight PreProc guifg=#A6E22E gui=NONE
+    highlight Include guifg=#F8F8F0 gui=NONE
+    highlight Define guifg=#66D9EF
 
-    highlight Type guifg=#48e2FF gui=NONE
-    highlight StorageClass guifg=#48e2FF gui=NONE
-    highlight structure guifg=#66D9EF gui=NONE
+    highlight Type guifg=#00D1EA gui=NONE
+    highlight StorageClass guifg=#FFD800 gui=NONE
+    highlight structure guifg=#E6DB74 gui=NONE
 
-    highlight Special guifg=#A6E22E gui=NONE
-    highlight Tag guifg=#F92672 gui=NONE
+    highlight Special guifg=#FD971F gui=NONE
+    highlight Tag guifg=#75715E gui=NONE
 
     highlight! link Title Normal
-    highlight rubySymbol guifg=#339999 gui=NONE
-    highlight rubyStringDelimiter guifg=#66FF00
-    highlight rubyInterpolation guifg=White
-    highlight rubyPseudoVariable guifg=#339999
-    highlight Search guibg=#bbbbbb guifg=#004e57
+    highlight Search guibg=#FFE792 guifg=#000000
 "    highlight CursorLine guibg=#666633
 
     "垂直分割线
