@@ -33,9 +33,9 @@ if has("gui_running")
 
     highlight Comment guifg=#75715E
 
-    highlight Constant guifg=#66FF00
+    highlight Constant guifg=#66FF00 gui=NONE
     highlight String guifg=#ffd800
-    highlight Character guifg=#66FF00
+    highlight Character guifg=#ffd800
     highlight Number guifg=#AE81FF
     highlight Float guifg=#66FF00
     highlight Boolean guifg=#AE81FF
@@ -49,10 +49,8 @@ if has("gui_running")
 
     highlight PreProc guifg=#AE81FF gui=NONE
     highlight Include guifg=#AE81FF gui=NONE
-    highlight Define guifg=#ff0962
 
     highlight Type guifg=#48e2ff gui=NONE
-    highlight StorageClass guifg=#A6E22E gui=NONE
     highlight structure guifg=#66D9EF gui=NONE
 
     highlight Special guifg=#A6E22E gui=NONE
