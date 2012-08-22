@@ -74,10 +74,11 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 "80字符限制
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%80v.*/
+match OverLength /\(.\{80}\)\@<=.*/
 
-highlight tailBlack ctermbg=red guibg=#888
-match tailBlack /[ \t\r]\+$/
+"高亮行尾空白
+highlight tailBlack ctermbg=red guibg=#555555
+match tailBlack /\(\S\+\)\@<=[ \t\r]\+$/
 
 "vim自带补全插件
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -88,6 +89,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 ":auto BufReadPost * retab! 4
 ":auto BufWritePre * retab! 4
 ":auto BufWritePost  * retab! 4
+nmap <leader>r :retab! 4<CR>
 
 au BufRead,BufNewFile jquery.*.js set ft=jquery
 au! BufRead,BufNewFile *.json set filetype=javascript
@@ -158,7 +160,7 @@ map <F12> :%s/[ \t\r]\+$//g<cr>
 " 插入匹配括号
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
-inoremap { {}<LEFT><CR><ESC>O<tab>
+inoremap { {}<LEFT><CR><ESC>O
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
 inoremap < <><LEFT>
