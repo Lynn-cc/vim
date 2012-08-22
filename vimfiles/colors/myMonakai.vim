@@ -28,41 +28,42 @@ let g:colors_name = "vibrantink"
 
 if has("gui_running")
 
-    highlight Normal guifg=White   guibg=Black
-    highlight Cursor guifg=Black   guibg=White
+    highlight Normal guifg=#c0c0c0   guibg=#111111
+    highlight Cursor guifg=Black   guibg=#c0c0c0
 
     highlight Comment guifg=#75715E
 
-    highlight Constant guifg=#66FF00 gui=NONE
-    highlight String guifg=#ffd800
-    highlight Character guifg=#ffd800
+    highlight Constant guifg=#FFEE98
+    highlight String guifg=#E6DB74
+    highlight Character guifg=#E6DB74
     highlight Number guifg=#AE81FF
-    highlight Float guifg=#66FF00
+    highlight Float guifg=#E6DB74
     highlight Boolean guifg=#AE81FF
 
-    highlight Identifier guifg=#66ff00 gui=NONE
-    highlight Function guifg=#66D9EF gui=NONE
+    highlight Identifier guifg=#66FF00 gui=NONE
+    highlight Function guifg=#48E2FF gui=NONE
 
-    highlight Statement guifg=#ff0962 gui=NONE
-    highlight Keyword guifg=#ff0962
-    highlight Operator guifg=#ff0962
+    highlight Statement guifg=#FF0962 gui=NONE
+    highlight Keyword guifg=#A6E22E
+    highlight Operator guifg=#A6E22E
 
-    highlight PreProc guifg=#AE81FF gui=NONE
-    highlight Include guifg=#AE81FF gui=NONE
+    highlight PreProc guifg=#A6E22E gui=NONE
+    highlight Include guifg=#F8F8F0 gui=NONE
+    highlight Define guifg=#66D9EF
 
-    highlight Type guifg=#48e2ff gui=NONE
-    highlight structure guifg=#66D9EF gui=NONE
+    highlight Type guifg=#00D1EA gui=NONE
+    highlight StorageClass guifg=#FFD800 gui=NONE
+    highlight structure guifg=#E6DB74 gui=NONE
 
-    highlight Special guifg=#A6E22E gui=NONE
-    highlight Tag guifg=#F92672 gui=NONE
+    highlight Special guifg=#FD971F gui=NONE
+    highlight Tag guifg=#75715E gui=NONE
 
-    highlight rubySymbol guifg=#339999 gui=NONE
-    highlight rubyStringDelimiter guifg=#66FF00
-    highlight rubyInterpolation guifg=White
-    highlight rubyPseudoVariable guifg=#339999
-    highlight Constant guifg=#FFEE98
-    highlight Search guibg=#bbbbbb guifg=#004e57
+    highlight! link Title Normal
+    highlight Search guibg=#FFE792 guifg=#000000
 "    highlight CursorLine guibg=#666633
+
+    "垂直分割线
+    highlight VertSplit guibg=#000000 guifg=#555555
 
 else
     set t_Co=256
