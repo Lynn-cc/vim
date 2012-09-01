@@ -13,10 +13,21 @@ set nocompatible                      " 关闭 vi 兼容模式
 syntax on                             " 自动语法高亮
 filetype plugin indent on             " 开启插件
 filetype on                           " 自动检查文件类型
+if (has("win32") || has("win64") || has("win32unix"))
+    set fileformat=dos
+    set fileformats=dos
+else
+    set fileformat=unix
+    set fileformats=unix
+endif
 
 "显示
-set guifontwide=YouYuan:h11:cGB2312   " 中文等宽字体
-set guifont=Monaco:h11                " 字体和字号
+if (has("win32") || has("win64") || has("win32unix"))
+    set guifontwide=YouYuan:h11:cGB2312   " 中文等宽字体
+    set guifont=Monaco:h11                " 字体和字号
+else
+    set guifont=Monaco:h14                " 字体和字号
+endif
 colorscheme myMonakai                  " 设定配色方案
 set number                            " 显示行号
 "set cursorline                       " 突出显示当前行
@@ -69,6 +80,11 @@ set completeopt=longest,menu          " 即时显示自动提示
 "set foldclose=all                    " 设置为自动关闭折叠
 
 
+"mac 设置
+if (!(has("win32") || has("win64") || has("win32unix")))
+    inoremap ` <ESC>
+endif
+
 " 用空格键来开关折叠
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
@@ -115,9 +131,9 @@ let g:indent_guides_guide_size=1
 map gi :call indent_guides#toggle()<CR>
 
 "Bookmark
-map <silent> bb :ToggleBookmark<CR>
-map <silent> bn :NextBookmark<CR>
-map <silent> bp :PreviousBookmark<CR>
+map <silent> mb :ToggleBookmark<CR>
+map <silent> mn :NextBookmark<CR>
+map <silent> mp :PreviousBookmark<CR>
 let g:bookmarking_menu = 1
 
 "host快捷注释和取消
@@ -125,8 +141,13 @@ nmap zs <ESC>0i#<ESC>:w<CR>
 nmap zx <ESC>0x:w<CR>
 
 "快捷载入/打开vimrc
-nmap <leader>s <ESC>:source $vim/_vimrc<CR>
-nmap <leader>z <ESC>:vnew $vim/_vimrc<CR>
+if (has("win32") || has("win64") || has("win32unix"))
+    nmap <leader>s <ESC>:source $vim/_vimrc<CR>
+    nmap <leader>z <ESC>:vnew $vim/_vimrc<CR>
+else
+    nmap <leader>s <ESC>:source ~/.vim/.vimrc<CR>
+    nmap <leader>z <ESC>:vnew ~/.vim/.vimrc<CR>
+endif
 
 "高亮颜色字串
 nmap <Leader>c <Plug>Colorizer
@@ -155,7 +176,11 @@ map nt :NERDTree<CR>
 let g:NERDTreeWinSize=20
 
 " 删除所有行未尾空格
-map <F12> :%s/[ \t\r]\+$//g<cr>
+if (has("win32") || has("win64") || has("win32unix"))
+    map <F12> :%s/[ \t\r]\+$//g<cr>
+else
+    map <leader>b :%s/[ \t\r]\+$//g<cr>
+endif
 
 " 插入匹配括号
 inoremap ( ()<LEFT>

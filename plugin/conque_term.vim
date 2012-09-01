@@ -27,9 +27,7 @@
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 " THE SOFTWARE.
 " }}}
-
 " See docs/conque_term.txt for help or type :help ConqueTerm
-
 if exists('g:ConqueTerm_Loaded') || v:version < 700
     finish
 endif
