@@ -5,7 +5,6 @@
 " @Last Change: 2011-05-26.
 " GetLatestVimScripts: 1431 0 :AutoInstall: checksyntax.vim
 " @Revision:    396
-
 if exists('g:loaded_checksyntax')
     finish
 endif
@@ -42,4 +41,3 @@ if !hasmapto(':CheckSyntax') && empty(maparg('<F5>', 'n'))
     noremap <F5> :CheckSyntax<cr>
     inoremap <F5> <c-o>:CheckSyntax<cr>
 endif
-
