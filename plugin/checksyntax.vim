@@ -41,3 +41,4 @@ if !hasmapto(':CheckSyntax') && empty(maparg('<F5>', 'n'))
     noremap <F5> :CheckSyntax<cr>
     inoremap <F5> <c-o>:CheckSyntax<cr>
 endif
+

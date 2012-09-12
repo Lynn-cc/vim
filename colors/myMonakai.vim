@@ -1,22 +1,12 @@
 " Vim color scheme
 "
-" Name:         vibrantink.vim
-" Maintainer:   Jo Vermeulen <jo.vermeulen@gmail.com> 
-" Last Change:  30 Jul 2007 
+" Name:         MyMonakai.vim
+" Maintainer:   Lynn Martin <babyliner1026@gmail.com> 
+" Last Change:  8 Sep 2012 
 " License:      public domain
-" Version:      1.2
+" Version:      1.0
 "
-" This scheme should work in the GUI and in xterm's 256 color mode. It won't
-" work in 8/16 color terminals.
 "
-" I based it on John Lam's initial VibrantInk port to Vim [1]. Thanks to a
-" great tutorial [2], I was able to convert it to xterm 256 color mode. And
-" of course, credits go to Justin Palmer for creating the original VibrantInk
-" TextMate color scheme [3].
-"
-" [1] http://www.iunknown.com/articles/2006/09/04/vim-can-save-your-hands-too
-" [2] http://frexx.de/xterm-256-notes/
-" [3] http://encytemedia.com/blog/articles/2006/01/03/textmate-vibrant-ink-theme-and-prototype-bundle
 
 set background=dark
 hi clear
@@ -24,12 +14,12 @@ if exists("syntax_on")
    syntax reset
 endif
 
-let g:colors_name = "vibrantink"
+let g:colors_name = "MyMonakai"
 
 if has("gui_running")
 
-    highlight Normal guifg=#c0c0c0   guibg=#111111
-    highlight Cursor guifg=Black   guibg=#c0c0c0
+    highlight Normal guifg=#C0C0C0   guibg=#111111
+    highlight Cursor guifg=Black   guibg=#C0C0C0
 
     highlight Comment guifg=#75715E
 
@@ -65,6 +55,9 @@ if has("gui_running")
     "垂直分割线
     highlight VertSplit guibg=#000000 guifg=#555555
 
+    "折叠
+    highlight Folded guibg=#444444
+
 else
     set t_Co=256
     highlight Normal ctermfg=White ctermbg=Black 
@@ -86,3 +79,4 @@ else
     highlight Search ctermbg=White 
     highlight CursorLine cterm=NONE ctermbg=235
 endif
+
