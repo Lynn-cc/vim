@@ -23,16 +23,16 @@ endif
 
 "显示
 if (has("win32") || has("win64") || has("win32unix"))
-    set guifontwide=YouYuan:h11:cGB2312   " 中文等宽字体
-    set guifont=Monaco:h11                " 字体和字号
+    set guifontwide=YouYuan:h11:cGB2312                  " 中文等宽字体
+    set guifont=Monaco:h11                               " 字体和字号
 else
-    set guifont=Monaco:h14                " 字体和字号
+    set guifont=Monaco:h14                               " 字体和字号
 endif
-colorscheme myMonakai                  " 设定配色方案
+colorscheme ccmolakai                 " 设定配色方案
 set number                            " 显示行号
 "set cursorline                       " 突出显示当前行
-set wrap                              " 设置折行
-set linebreak                         " 设置智能判断折行
+"set wrap                             " 设置折行
+"set linebreak                        " 设置智能判断折行
 set ruler                             " 打开状态栏标尺
 set guioptions-=T                     " 隐藏工具栏
 set guioptions-=m                     " 隐藏菜单栏
@@ -65,7 +65,7 @@ set t_vb=                             " 置空错误铃声的终端代码
 
 "set showmatch                        " 插入括号时，短暂地跳转到匹配的对应括号
 "set matchtime=2                      " 短暂跳转到匹配括号的时间
-"set magic                            " 设置魔术 magic (\m)：除了 $ . * ^ 之外其他元字符都要加反斜杠。nomagic (\M)：除了 $ ^ 之外其他元字符都要加反斜杠。
+set magic                             " 设置魔术 magic (\m)：除了 $ . * ^ 之外其他元字符都要加反斜杠。nomagic (\M)：除了 $ ^ 之外其他元字符都要加反斜杠。
 "set hidden                           " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
 set backspace=indent,eol,start        " 不设定在插入状态无法用退格键和 Delete 键删除回车符
 set cmdheight=1                       " 设定命令行的行数为 1
@@ -80,21 +80,36 @@ set completeopt=longest,menu          " 即时显示自动提示
 "set foldclose=all                    " 设置为自动关闭折叠
 
 
-"mac 设置
+"高亮行尾空白
+highlight tailBlack ctermbg=red guibg=#555555
+match tailBlack /\(\S\+\)\@<=[ \t\r]\+$/
+
+"删除所有行未尾空格
+if (has("win32") || has("win64") || has("win32unix"))
+    map <F12> :%s/[ \t\r]\+$//g<cr>
+else
+    map <leader>b :%s/[ \t\r]\+$//g<cr>
+endif
+
+"高亮80字符限制
+highlight overLength ctermbg=red guibg=#792929
+2match overLength /\(.\{80}\)\@<=.*\S\+/
+
+"mac替换ESC
 if (!(has("win32") || has("win64") || has("win32unix")))
     inoremap ` <ESC>
 endif
 
-" 用空格键来开关折叠
+"用空格键来开关折叠
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
-"80字符限制
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\(.\{80}\)\@<=.*/
-
-"高亮行尾空白
-highlight tailBlack ctermbg=red guibg=#555555
-match tailBlack /\(\S\+\)\@<=[ \t\r]\+$/
+"插入匹配括号
+inoremap ( ()<LEFT>
+inoremap [ []<LEFT>
+inoremap { {}<LEFT><CR><ESC>O
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>
+inoremap < <><LEFT>
 
 "vim自带补全插件
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -107,7 +122,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 ":auto BufWritePost  * retab! 4
 nmap <leader>r :retab! 4<CR>
 
-au BufRead,BufNewFile jquery.*.js set ft=jquery
+au BufRead,BufNewFile jquery.*.js jq.js set ft=jquery
 au! BufRead,BufNewFile *.json set filetype=javascript
 
 "js html indent插件设置
@@ -136,20 +151,16 @@ map <silent> mn :NextBookmark<CR>
 map <silent> mp :PreviousBookmark<CR>
 let g:bookmarking_menu = 1
 
-"host快捷注释和取消
-nmap zs <ESC>0i#<ESC>:w<CR>
-nmap zx <ESC>0x:w<CR>
-
 "快捷载入/打开vimrc
 if (has("win32") || has("win64") || has("win32unix"))
-    nmap <leader>s <ESC>:source $vim/_vimrc<CR>
-    nmap <leader>z <ESC>:vnew $vim/_vimrc<CR>
+    nmap <leader>s <ESC>:source ~/.vimrc<CR>
+    nmap <leader>z <ESC>:vnew ~/.vimrc<CR>
 else
     nmap <leader>s <ESC>:source ~/.vim/.vimrc<CR>
     nmap <leader>z <ESC>:vnew ~/.vim/.vimrc<CR>
 endif
 
-"高亮颜色字串
+"高亮颜色字符串
 nmap <Leader>c <Plug>Colorizer
 
 "高亮当前列
@@ -168,31 +179,28 @@ map <F3> :MRU<CR>
 map <F11> :w<CR>:!python %<CR>
 
 "markdown
-nnoremap <F10> :!python "c:\Program Files\Python\Scripts\markdown.py" %:t -e chinese > %:r.html<CR>
-noremap \e  :!cmd /c start %:r.html<CR>
+if (has("win32") || has("win64") || has("win32unix"))
+    nnoremap <F10> :!python "c:\Program Files\Python\Scripts\markdown.py" %:t -e chinese > %:r.html<CR>
+    noremap \e  :!cmd /c start %:r.html<CR>
+endif
 
 "NERDTree快捷键
 map nt :NERDTree<CR>
 let g:NERDTreeWinSize=20
 
-" 删除所有行未尾空格
-if (has("win32") || has("win64") || has("win32unix"))
-    map <F12> :%s/[ \t\r]\+$//g<cr>
-else
-    map <leader>b :%s/[ \t\r]\+$//g<cr>
-endif
-
-" 插入匹配括号
-inoremap ( ()<LEFT>
-inoremap [ []<LEFT>
-inoremap { {}<LEFT><CR><ESC>O
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
-inoremap < <><LEFT>
-
+"高亮当前列函数
+function! SetColorColumn()
+    let col_num = virtcol(".")
+    let cc_list = split(&cc, ',')
+    if count(cc_list, string(col_num)) <= 0
+        execute "set cc+=".col_num
+    else
+        execute "set cc-=".col_num
+    endif
+endfunction
 
 set diffexpr=MyDiff()
-function MyDiff()
+function! MyDiff()
     let opt = '-a --binary '
     if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
     if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
@@ -214,15 +222,4 @@ function MyDiff()
         let cmd = $VIMRUNTIME . '\diff'
     endif
     silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
-
-"高亮当前列函数
-function! SetColorColumn()
-    let col_num = virtcol(".")
-    let cc_list = split(&cc, ',')
-    if count(cc_list, string(col_num)) <= 0
-        execute "set cc+=".col_num
-    else
-        execute "set cc-=".col_num
-   endif
 endfunction
