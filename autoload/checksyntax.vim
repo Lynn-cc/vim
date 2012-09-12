@@ -413,4 +413,3 @@ function! s:FilterItem(def, val) "{{{3
     endif
     return 1
 endf
-
