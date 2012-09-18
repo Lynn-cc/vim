@@ -5,15 +5,15 @@ set fileencoding=utf-8           "保存时,文件的编码格式
 set termencoding=utf-8           "终端编码
 language messages zh_CN.UTF-8    "提示信息中文
 
-source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
+"source $VIMRUNTIME/vimrc_example.vim
+"source $VIMRUNTIME/mswin.vim
 
-set nocompatible
 set nocompatible                      " 关闭 vi 兼容模式
 syntax on                             " 自动语法高亮
 filetype plugin indent on             " 开启插件
 filetype on                           " 自动检查文件类型
-if (has("win32") || has("win64") || has("win32unix"))
+
+if(has("win32") || has("win64") || has("win32unix"))
     set fileformat=dos
     set fileformats=dos
 else
