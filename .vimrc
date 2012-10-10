@@ -6,7 +6,10 @@ set termencoding=utf-8           "终端编码
 language messages zh_CN.UTF-8    "提示信息中文
 
 "source $VIMRUNTIME/vimrc_example.vim
-"source $VIMRUNTIME/mswin.vim
+
+if(has("win32") || has("win64") || has("win32unix"))
+    source $VIMRUNTIME/mswin.vim
+endif
 
 set nocompatible                      " 关闭 vi 兼容模式
 syntax on                             " 自动语法高亮
