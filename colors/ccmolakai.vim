@@ -52,7 +52,7 @@ if has("gui_running")
     highlight Search guibg=#FFE792 guifg=#000000
     highlight Visual guifg=#000000 guibg=#389402
     highlight Pmenu guibg=#333333 guifg=#000000
-    highlight PmenuSel guifg=#33333
+    highlight PmenuSel guifg=#333333
 "    highlight CursorLine guibg=#666633 "高亮当前行
 
     "垂直分割线
