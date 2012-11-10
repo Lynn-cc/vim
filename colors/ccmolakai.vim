@@ -143,3 +143,4 @@ endif
 "   hi LineNr          ctermfg=250 ctermbg=234
 "   hi NonText         ctermfg=250 ctermbg=234
 "endif
+
