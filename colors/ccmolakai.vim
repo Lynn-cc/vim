@@ -39,7 +39,7 @@ let g:colors_name = "ccmolakai"
 
     highlight PreProc guifg=#A6E22E gui=NONE
     highlight Include guifg=#F8F8F0 gui=NONE
-    highlight Define guifg=#66D9EF
+    highlight Define guifg=#EF20B2
 
     highlight Type guifg=#00D1EA gui=NONE
     highlight StorageClass guifg=#FFD800 gui=NONE
