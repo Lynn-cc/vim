@@ -48,12 +48,12 @@ set novisualbell                      " 关闭使用可视响铃代替呼叫
 set t_vb=                             " 置空错误铃声的终端代码
 
 " 折叠
-set foldenable                        " 开始折叠
+"set foldenable                        " 开始折叠
 set foldmethod=syntax                 " 设置语法折叠
 set foldcolumn=0                      " 设置折叠区域的宽度
 setlocal foldlevel=1                  " 设置折叠层数为
 set completeopt=longest,menu          " 即时显示自动提示
-set foldclose=all                    " 设置为自动关闭折叠
+"set foldclose=all                    " 设置为自动关闭折叠
 
 " 其他
 "set showmatch                        " 插入括号时，短暂地跳转到匹配的对应括号
