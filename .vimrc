@@ -11,7 +11,7 @@ if(has("win32") || has("win64") || has("win32unix"))
     source $VIMRUNTIME/mswin.vim
 endif
 
-set nocompatible                      " 关闭 vi 兼容模式
+"set nocompatible                     " 关闭 vi 兼容模式
 syntax on                             " 自动语法高亮
 filetype plugin indent on             " 开启插件
 filetype on                           " 自动检查文件类型
@@ -125,7 +125,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 ":auto BufWritePost  * retab! 4
 nmap <leader>r :retab! 4<CR>
 
-au BufRead,BufNewFile jquery.*.js jq.js set ft=jquery
+au BufRead,BufNewFile *.js set ft=jquery
 au! BufRead,BufNewFile *.json set filetype=javascript
 
 "js html indent插件设置
@@ -226,3 +226,4 @@ function! MyDiff()
     endif
     silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
+

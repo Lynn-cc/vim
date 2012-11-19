@@ -15,8 +15,9 @@ if !exists("main_syntax")
   let main_syntax = 'javascript'
 endif
 
-ru! syntax/javascript.vim
-unlet b:current_syntax
+"ru! syntax/javascript.vim
+"unlet b:current_syntax
+
 
 syn match   jQuery          /jQuery\|\$/
 
@@ -78,12 +79,12 @@ syn match   jVisibility     contained /:\(hidden\|visible\)/
 " For version 5.7 and earlier: only when not done already
 " For version 5.8 and later: only when an item doesn't have highlighting yet
 if version >= 508 || !exists("did_lisp_syntax_inits")
-  if version < 508
+if version < 508
     let did_lisp_syntax_inits = 1
     command -nargs=+ HiLink hi link <args>
   else
     command -nargs=+ HiLink hi def link <args>
-  endif
+endif
 
   HiLink jQuery          Constant
 
@@ -116,5 +117,5 @@ if version >= 508 || !exists("did_lisp_syntax_inits")
   delcommand HiLink
 endif
 
-
+ru! syntax/javascript.vim
 let b:current_syntax = 'jquery'
