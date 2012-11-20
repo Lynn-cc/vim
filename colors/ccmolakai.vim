@@ -58,3 +58,4 @@ let g:colors_name = "ccmolakai"
     "垂直分割线
     highlight VertSplit guibg=#000000 guifg=#555555
 "endif
+
