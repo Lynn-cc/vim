@@ -247,3 +247,4 @@ if main_syntax == 'javascript'
 endif
 
 " vim: ts=4
+
