@@ -102,6 +102,8 @@ else
 endif
 
 " 各种快捷键
+" 补全提示
+inoremap <leader><Tab> <C-x><C-o>
 " 把文件内的tab转换成空格
 nmap <leader>r :retab! 4<CR>
 " taglist
