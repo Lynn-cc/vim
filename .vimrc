@@ -53,7 +53,7 @@ set foldmethod=syntax                 " 设置语法折叠
 set foldcolumn=0                      " 设置折叠区域的宽度
 setlocal foldlevel=1                  " 设置折叠层数为
 set completeopt=longest,menu          " 即时显示自动提示
-"set foldclose=all                    " 设置为自动关闭折叠
+set foldclose=all                    " 设置为自动关闭折叠
 
 " 其他
 "set showmatch                        " 插入括号时，短暂地跳转到匹配的对应括号
@@ -98,6 +98,9 @@ else
 
     " 删除行尾空白
     map <leader>b :%s/[ \t\r]\+$//g<cr>
+
+    " 转换结尾字符
+    map <leader>w :%s /\r\n/\r/g<cr>
 
 endif
 
