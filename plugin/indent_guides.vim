@@ -50,12 +50,23 @@ call s:InitVariable('g:indent_guides_auto_colors',           1 )
 call s:InitVariable('g:indent_guides_color_change_percent',  10) " ie. 10%
 call s:InitVariable('g:indent_guides_guide_size',            0 )
 call s:InitVariable('g:indent_guides_start_level',           1 )
-call s:InitVariable('g:indent_guides_enable_on_vim_startup', 1 )
+call s:InitVariable('g:indent_guides_enable_on_vim_startup', 0 )
 call s:InitVariable('g:indent_guides_debug',                 0 )
 call s:InitVariable('g:indent_guides_space_guides',          1 )
 
+if !exists('g:indent_guides_exclude_filetypes')
+  let g:indent_guides_exclude_filetypes = ['help']
+endif
+
 " Default mapping
-nmap <Leader>ig :IndentGuidesToggle<CR>
+if !hasmapto('<Plug>IndentGuidesToggle', 'n') && maparg('<Leader>ig', 'n') == ''
+  nmap <silent><unique> <Leader>ig <Plug>IndentGuidesToggle
+endif
+
+" Plug mappings
+nnoremap <unique><script> <Plug>IndentGuidesToggle  :IndentGuidesToggle<CR>
+nnoremap <unique><script> <Plug>IndentGuidesEnable  :IndentGuidesEnable<CR>
+nnoremap <unique><script> <Plug>IndentGuidesDisable :IndentGuidesDisable<CR>
 
 " Auto commands
 augroup indent_guides
@@ -65,5 +76,8 @@ augroup indent_guides
     autocmd VimEnter * :IndentGuidesEnable
   endif
 
-  autocmd BufEnter,WinEnter * call indent_guides#process_autocmds()
+  autocmd BufEnter,WinEnter,FileType * call indent_guides#process_autocmds()
+
+  " Trigger BufEnter and process modelines.
+  autocmd ColorScheme * doautocmd indent_guides BufEnter
 augroup END

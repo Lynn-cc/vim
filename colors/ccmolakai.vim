@@ -48,12 +48,12 @@ if has("gui_running")
     highlight Special guifg=#FD971F gui=NONE
     highlight Tag guifg=#75715E gui=NONE
 
-    highlight! link Title Normal
+    "highlight! link Title Normal
     highlight Search guibg=#FFE792 guifg=#000000
     highlight Visual guifg=#000000 guibg=#389402
     highlight Pmenu guibg=#333333 guifg=#000000
     highlight PmenuSel guifg=#333333
-    "    highlight CursorLine guibg=#666633 "高亮当前行
+    "highlight CursorLine guibg=#666633 "高亮当前行
 
     "垂直分割线
     highlight VertSplit guibg=#000000 guifg=#555555
@@ -74,7 +74,7 @@ if &t_Co > 255
     hi DiffAdd                     ctermbg=24
     hi DiffChange      ctermfg=181 ctermbg=239
     hi DiffDelete      ctermfg=162 ctermbg=53
-    hi DiffText                    ctermbg=102 cterm=bold
+    hi DiffText                    ctermbg=102   cterm=bold
 
     hi Directory       ctermfg=118               cterm=bold
     hi Error           ctermfg=219 ctermbg=89
@@ -93,7 +93,7 @@ if &t_Co > 255
     hi Macro           ctermfg=193
     hi SpecialKey      ctermfg=81
 
-    hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
+    hi MatchParen      ctermfg=16  ctermbg=208   cterm=bold
     hi ModeMsg         ctermfg=229
     hi MoreMsg         ctermfg=229
     hi Operator        ctermfg=161

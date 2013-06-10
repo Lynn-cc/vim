@@ -219,4 +219,4 @@ behavior and implement it.  Right now one can do :let b:surround_indent = 1
 (or the global equivalent) to enable automatic re-indenting by Vim via |=|;
 should this be the default?
 
- vim:tw=78:ts=8:ft=help:norl:
+vim:tw=78:ts=8:ft=help:norl:

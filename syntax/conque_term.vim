@@ -111,3 +111,4 @@ syn region ConqueString start=+`+ end=+`+ skip=+\\`+ contained oneline
 hi def link ConqueString String
 
 " vim: foldmethod=marker
+
