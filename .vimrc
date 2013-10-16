@@ -88,7 +88,7 @@ else
     set guifont=Monaco:h14                               " 字体和字号
 
     " mac替换ESC
-    inoremap ` <ESC>
+    " inoremap ` <ESC>
 
     " 快捷载入vimrc
     nmap <leader>s <ESC>:source ~/.vim/.vimrc<CR>
@@ -168,10 +168,16 @@ let g:indent_guides_guide_size=1
 let loaded_matchit = 1
 " javascript插件设置
 let javascript_enable_domhtmlcss=1 "启用对dom,html,css高亮支持
+"coffee配置
+let coffee_compile_vert = 1
+let coffee_watch_vert = 1
 " 强制文件类型
 au BufRead,BufNewFile jquery.*.js jq.js set ft=jquery
+au BufRead,BufNewFile *.tpl set ft=html
 au BufRead,BufNewFile *.md set ft=markdown
 au! BufRead,BufNewFile *.json set filetype=javascript
+" coffee即时编译
+autocmd BufWritePost *.coffee silent make!
 " vim自带补全插件
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
