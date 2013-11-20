@@ -1,5 +1,5 @@
 " 文件编码
-set fileencodings=ucs-bom,utf-8,gbk,cp936,gb18030,big5,euc-jp,euc-kr,latin1 "文件编码检查
+set fileencodings=ucs-bom,utf-8,gbk,cp936,gb18030,big5,latin1 "文件编码检查
 set encoding=utf-8               "vim内部编码
 set fileencoding=utf-8           "保存时,文件的编码格式
 set termencoding=utf-8           "终端编码
@@ -9,7 +9,7 @@ language messages zh_CN.UTF-8    "提示信息中文
 set nocompatible                      " 关闭 vi 兼容模式
 syntax on                             " 自动语法高亮
 filetype plugin indent on             " 开启插件
-filetype on                           " 自动检查文件类型
+"filetype on                           " 自动检查文件类型
 
 " 显示
 colorscheme ccmolakai                 " 设定配色方案
@@ -49,11 +49,11 @@ set t_vb=                             " 置空错误铃声的终端代码
 
 " 折叠
 "set foldenable                        " 开始折叠
-set foldmethod=syntax                 " 设置语法折叠
-set foldcolumn=0                      " 设置折叠区域的宽度
-setlocal foldlevel=1                  " 设置折叠层数为
-set completeopt=longest,menu          " 即时显示自动提示
-set foldclose=all                    " 设置为自动关闭折叠
+"set foldmethod=syntax                 " 设置语法折叠
+"set foldcolumn=0                      " 设置折叠区域的宽度
+"setlocal foldlevel=1                  " 设置折叠层数
+"set completeopt=longest,menu          " 即时显示自动提示
+set foldclose=all                      " 设置为自动关闭折叠
 
 " 其他
 "set showmatch                        " 插入括号时，短暂地跳转到匹配的对应括号
@@ -61,7 +61,7 @@ set foldclose=all                    " 设置为自动关闭折叠
 set magic                             " 开启：$.*^之外其他元字符都要加反斜杠；关闭：$^之外其他元字符都要加反斜杠。
 "set hidden                           " 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
 set backspace=indent,eol,start        " 不设定在插入状态无法用退格键和 Delete 键删除回车符
-set cmdheight=1                       " 设定命令行的行数为 1
+"set cmdheight=1                       " 设定命令行的行数为 1
 set laststatus=2                      " 显示状态栏 (默认值为 1, 无法显示状态栏)
 
 
@@ -70,8 +70,13 @@ if (has("win32") || has("win64") || has("win32unix"))
     source $VIMRUNTIME/mswin.vim                         " 载入window配置
     set fileformat=dos
     set fileformats=dos
-    set guifontwide=YouYuan:h11:cGB2312                  " 中文等宽字体
-    set guifont=Monaco:h11                               " 字体和字号
+    set guifontwide=YouYuan:h11:cGB2312
+    set guifont=Monaco:h11
+
+    "中文输入法困扰
+    set noimdisable
+    set iminsert=0
+    set imsearch=0
 
     " 快捷载入vimrc
     nmap <leader>s <ESC>:source ~/.vimrc<CR>
@@ -79,13 +84,10 @@ if (has("win32") || has("win64") || has("win32unix"))
     " 快捷打开.vimrc
     nmap <leader>z <ESC>:vnew ~/.vimrc<CR>
 
-    " 删除行尾空白
-    map <F12> :%s/[ \t\r]\+$//g<cr>
-
 else
     set fileformat=unix
     set fileformats=unix
-    set guifont=Monaco:h14                               " 字体和字号
+    set guifont=Monaco:h14
 
     " mac替换ESC
     " inoremap ` <ESC>
@@ -96,25 +98,24 @@ else
     " 快捷打开.vimrc
     nmap <leader>z <ESC>:vnew ~/.vim/.vimrc<CR>
 
-    " 删除行尾空白
-    map <leader>b :%s/[ \t\r]\+$//g<cr>
-
     " 转换结尾字符
     map <leader>w :%s /\r\n/\r/g<cr>
 
 endif
 
 " 各种快捷键
+" 删除行尾空白
+map <leader>b :%s/[ \t\r]\+$//g<cr>
 " 把文件内的tab转换成空格
 nmap <leader>r :retab! 4<CR>
-" taglist
-nmap <leader>l :Tlist<CR>
-" 高亮颜色字符串
-nmap <Leader>c <Plug>Colorizer
 " 高亮当前列
 nmap <Leader>h :call SetColorColumn()<CR>
-" MRU历史记录窗口
-map <F3> :MRU<CR>
+" IndentGuides
+nmap <Leader>i :call indent_guides#toggle()<CR>
+" Taglist
+nmap <Leader>t <C-J>
+" NERDTree快捷键
+map nt :NERDTree<CR>
 " 用空格键来开关折叠
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " 上下左右方向键切换窗口
@@ -122,14 +123,6 @@ nmap <LEFT> <C-w>h
 nmap <DOWN> <C-w>j
 nmap <UP> <C-w>k
 nmap <RIGHT> <C-w>l
-" NERDTree快捷键
-map nt :NERDTree<CR>
-" IndentGuides
-nmap gi :call indent_guides#toggle()<CR>
-" Bookmark
-map <silent> mb :ToggleBookmark<CR>
-map <silent> mn :NextBookmark<CR>
-map <silent> mp :PreviousBookmark<CR>
 " 插入匹配括号
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
@@ -137,14 +130,6 @@ inoremap { {}<LEFT><CR><ESC>O
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
 inoremap < <><LEFT>
-" Python编译
-"map <F11> :w<CR>:!python %<CR>
-" markdown
-"if (has("win32") || has("win64") || has("win32unix"))
-"    nnoremap <F10> :!python 'c:\Program Files\Python\Scripts\markdown.py' %:t -e chinese > %:r.html<CR>
-"    noremap \e  :!cmd /c start %:r.html<CR>
-"endif
-
 
 " 各种设置, 自动运行
 " 高亮行尾空白
@@ -154,20 +139,20 @@ match tailBlack /\(\S\+\)\@<=[ \t\r]\+$/
 highlight overLength ctermbg=red guibg=#792929
 2match overLength /\(.\{80}\)\@<=.*\S\+/
 " ListTag设置
-let Tlist_Show_One_File = 1         "不同时显示多个文件的tag，只显示当前文件的
-let Tlist_Exit_OnlyWindow = 1       "如果taglist窗口是最后一个窗口，则退出vim
-let Tlist_Use_Right_Window = 1      "在右侧窗口中显示taglist窗口
-let tlist_js_settings = 'javascript;s:string;a:array;o:object;f:function'
+"let Tlist_Show_One_File = 1         "不同时显示多个文件的tag，只显示当前文件的
+"let Tlist_Exit_OnlyWindow = 1       "如果taglist窗口是最后一个窗口，则退出vim
+"let Tlist_Use_Right_Window = 1      "在右侧窗口中显示taglist窗口
+"let tlist_js_settings = 'javascript;s:string;a:array;o:object;f:function'
 " NERDTree设置窗口宽度
-let g:NERDTreeWinSize=20
-" Bookmark设置
-let g:bookmarking_menu = 1
+"let g:NERDTreeWinSize=20
 " IndentGuides
-let g:indent_guides_guide_size=1
+"let g:indent_guides_guide_size=1
 " 开启语法匹配插件
-let loaded_matchit = 1
+"let loaded_matchit = 1
 " javascript插件设置
-let javascript_enable_domhtmlcss=1 "启用对dom,html,css高亮支持
+"let javascript_enable_domhtmlcss=1 "启用对dom,html,css高亮支持
+" js html indent插件设置
+"let g:js_indent_log = 0
 "coffee配置
 let coffee_compile_vert = 1
 let coffee_watch_vert = 1
@@ -178,16 +163,72 @@ au BufRead,BufNewFile *.md set ft=markdown
 au! BufRead,BufNewFile *.json set filetype=javascript
 " coffee即时编译
 autocmd BufWritePost *.coffee silent make!
-" vim自带补全插件
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-" js html indent插件设置
-let g:js_indent_log = 0
-"自动把文件内的tab转换成空格
-":auto BufNewFile  * retab! 4
-":auto BufReadPost * retab! 4
-":auto BufWritePre * retab! 4
-":auto BufWritePost  * retab! 4
+"vim-mou 插件配置
+let g:mou_dir = "/Applications/Mou.app"
+
+
+" My bundles here:
+set nocompatible              " be iMproved
+filetype off                  " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required!
+Bundle 'gmarik/vundle'
+
+" vim-scripts repos
+" utility
+Bundle 'The-NERD-tree'
+Bundle 'jsbeautify'
+Bundle 'vim-mou'
+Bundle 'vim-coffee-script'
+Bundle 'ZenCoding.vim'
+Bundle 'Indent-Guides'
+Bundle 'Colorizer--Brabandt'
+Bundle 'mru.vim'
+Bundle 'surround.vim'
+Bundle 'VimIM'
+Bundle 'vimcdoc'
+Bundle 'listtag'
+
+"indent
+"Bundle 'indentpython.vim'
+"Bundle 'Simple-Javascript-Indenter'
+"Bundle 'jade.vim'
+"Bundle 'JavaScript-Indent'
+"Bundle 'html-improved-indentation'
+"Bundle 'sh.vim'
+"Bundle ''
+"Bundle ''
+"
+
+"syntax
+"Bundle 'Sass'
+"Bundle 'Markdown-syntax'
+"Bundle ' jQuery'
+"Bundle ' HTML5-Syntax-File'
+"Bundle ''
+"Bundle ''
+"Bundle ''
+
+" original repos on GitHub
+"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Bundle 'tpope/vim-rails.git'
+" non-GitHub repos
+"Bundle 'git://git.wincent.com/command-t.git'
+" Git repos on your local machine (i.e. when working on your own plugin)
+"Bundle 'file:///Users/gmarik/path/to/plugin'
+" ...
+
+filetype plugin indent on     " required!
+"
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install (update) bundles
+" :BundleSearch(!) foo - search (or refresh cache first) for foo
+" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
 
 
 " 其他函数
