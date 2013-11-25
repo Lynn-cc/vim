@@ -73,11 +73,6 @@ if (has("win32") || has("win64") || has("win32unix"))
     set guifontwide=YouYuan:h11:cGB2312
     set guifont=Monaco:h11
 
-    "中文输入法困扰
-    set noimdisable
-    set iminsert=0
-    set imsearch=0
-
     " 快捷载入vimrc
     nmap <leader>s <ESC>:source ~/.vimrc<CR>
 
@@ -112,10 +107,11 @@ nmap <leader>r :retab! 4<CR>
 nmap <Leader>h :call SetColorColumn()<CR>
 " IndentGuides
 nmap <Leader>i :call indent_guides#toggle()<CR>
-" Taglist
-nmap <Leader>t <C-J>
 " NERDTree快捷键
 map nt :NERDTree<CR>
+" Mou打开
+nmap <leader>m :MouOpen<CR>
+
 " 用空格键来开关折叠
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " 上下左右方向键切换窗口
@@ -138,21 +134,10 @@ match tailBlack /\(\S\+\)\@<=[ \t\r]\+$/
 " 高亮80字符限制
 highlight overLength ctermbg=red guibg=#792929
 2match overLength /\(.\{80}\)\@<=.*\S\+/
-" ListTag设置
-"let Tlist_Show_One_File = 1         "不同时显示多个文件的tag，只显示当前文件的
-"let Tlist_Exit_OnlyWindow = 1       "如果taglist窗口是最后一个窗口，则退出vim
-"let Tlist_Use_Right_Window = 1      "在右侧窗口中显示taglist窗口
-"let tlist_js_settings = 'javascript;s:string;a:array;o:object;f:function'
 " NERDTree设置窗口宽度
-"let g:NERDTreeWinSize=20
+let g:NERDTreeWinSize=20
 " IndentGuides
-"let g:indent_guides_guide_size=1
-" 开启语法匹配插件
-"let loaded_matchit = 1
-" javascript插件设置
-"let javascript_enable_domhtmlcss=1 "启用对dom,html,css高亮支持
-" js html indent插件设置
-"let g:js_indent_log = 0
+let g:indent_guides_guide_size=1
 "coffee配置
 let coffee_compile_vert = 1
 let coffee_watch_vert = 1
@@ -181,10 +166,10 @@ Bundle 'gmarik/vundle'
 " vim-scripts repos
 " utility
 Bundle 'The-NERD-tree'
-Bundle 'jsbeautify'
+"Bundle 'jsbeautify'
 Bundle 'vim-mou'
 Bundle 'vim-coffee-script'
-Bundle 'ZenCoding.vim'
+Bundle 'Emmet.vim'
 Bundle 'Indent-Guides'
 Bundle 'Colorizer--Brabandt'
 Bundle 'mru.vim'
@@ -192,6 +177,8 @@ Bundle 'surround.vim'
 Bundle 'VimIM'
 Bundle 'vimcdoc'
 Bundle 'listtag'
+Bundle 'Lynn-cc/jsbeautify'
+"Bundle 'Tagbar'
 
 "indent
 "Bundle 'indentpython.vim'
@@ -207,8 +194,9 @@ Bundle 'listtag'
 "syntax
 "Bundle 'Sass'
 "Bundle 'Markdown-syntax'
-"Bundle ' jQuery'
-"Bundle ' HTML5-Syntax-File'
+"Bundle 'jQuery'
+"Bundle 'HTML5-Syntax-File'
+"Bundle 'jelera/vim-javascript-syntax'
 "Bundle ''
 "Bundle ''
 "Bundle ''

@@ -1,2 +1,7 @@
 vim73/
 .gitignore
+someInstallation/ctags-5.8
+someInstallation/ctags58.zip
+bundle/*
+*.swp
+*.log
