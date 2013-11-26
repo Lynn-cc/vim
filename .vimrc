@@ -49,7 +49,7 @@ set t_vb=                             " 置空错误铃声的终端代码
 
 " 折叠
 "set foldenable                        " 开始折叠
-"set foldmethod=syntax                 " 设置语法折叠
+"set foldmethod=indent                 " 设置语法折叠
 "set foldcolumn=0                      " 设置折叠区域的宽度
 "setlocal foldlevel=1                  " 设置折叠层数
 "set completeopt=longest,menu          " 即时显示自动提示
@@ -179,6 +179,9 @@ Bundle 'vimcdoc'
 Bundle 'listtag'
 Bundle 'Lynn-cc/jsbeautify'
 "Bundle 'Tagbar'
+
+"indent and syntax
+Bundle "pangloss/vim-javascript"
 
 "indent
 "Bundle 'indentpython.vim'
