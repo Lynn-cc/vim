@@ -1,5 +1,5 @@
 " 文件编码
-set fileencodings=ucs-bom,utf-8,gbk,cp936,gb18030,big5,latin1 "文件编码检查
+set fileencodings=ucs-bom,utf-8,gbk,cp936 ",gb18030,big5,latin1 "文件编码检查
 set encoding=utf-8               "vim内部编码
 set fileencoding=utf-8           "保存时,文件的编码格式
 set termencoding=utf-8           "终端编码
@@ -8,7 +8,7 @@ language messages zh_CN.UTF-8    "提示信息中文
 "source $VIMRUNTIME/vimrc_example.vim
 set nocompatible                      " 关闭 vi 兼容模式
 syntax on                             " 自动语法高亮
-filetype plugin indent on             " 开启插件
+"filetype plugin indent on             " 开启插件
 "filetype on                           " 自动检查文件类型
 
 " 显示
@@ -17,7 +17,7 @@ set number                            " 显示行号
 "set cursorline                       " 突出显示当前行
 "set wrap                             " 设置折行
 "set linebreak                        " 设置智能判断折行
-set ruler                             " 打开状态栏标尺
+"set ruler                             " 打开状态栏标尺
 set guioptions-=T                     " 隐藏工具栏
 set guioptions-=m                     " 隐藏菜单栏
 

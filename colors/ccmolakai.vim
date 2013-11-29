@@ -16,6 +16,7 @@ endif
 let g:colors_name = "ccmolakai"
 
 if has("gui_running")
+    " #00D1EA 
     set background=dark
     highlight Normal guifg=#c0c0c0   guibg=#111111
     highlight Cursor guifg=Black   guibg=#c0c0c0
@@ -26,22 +27,23 @@ if has("gui_running")
     highlight Constant guifg=#FFEE98
     highlight String guifg=#E6DB74
     highlight Character guifg=#E6DB74
-    highlight Number guifg=#AE81FF
-    highlight Float guifg=#E6DB74
-    highlight Boolean guifg=#AE81FF
+    highlight Number guifg=#C68B34
+    highlight Float guifg=#C68B34
+    highlight Boolean guifg=#C68B34
 
-    highlight Identifier guifg=#66FF00 gui=NONE
-    highlight Function guifg=#48E2FF gui=NONE
+    highlight Identifier guifg=#FF5932 gui=NONE
+    highlight Function guifg=#AE51FF gui=NONE
+    highlight Label guifg=#BE81FF gui=NONE
 
     highlight Statement guifg=#FF0962 gui=NONE
     highlight Keyword guifg=#A6E22E
     highlight Operator guifg=#A6E22E
 
     highlight PreProc guifg=#A6E22E gui=NONE
-    highlight Include guifg=#F8F8F0 gui=NONE
-    highlight Define guifg=#EF20B2
+    highlight Include guifg=#B8A8C0 gui=NONE
+    highlight Define guifg=#EF40B2
 
-    highlight Type guifg=#00D1EA gui=NONE
+    highlight Type guifg=#48C2FF gui=NONE
     highlight StorageClass guifg=#FFD800 gui=NONE
     highlight structure guifg=#E6DB74 gui=NONE
 
@@ -54,6 +56,8 @@ if has("gui_running")
     highlight Pmenu guibg=#333333 guifg=#000000
     highlight PmenuSel guifg=#333333
     "highlight CursorLine guibg=#666633 "高亮当前行
+    
+    highlight Noise guifg=#666666
 
     "垂直分割线
     highlight VertSplit guibg=#000000 guifg=#555555
