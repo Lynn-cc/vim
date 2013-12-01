@@ -180,6 +180,11 @@ Bundle 'listtag'
 Bundle 'Lynn-cc/jsbeautify'
 "Bundle 'Tagbar'
 
+"Dash
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
+
+
 "indent and syntax
 Bundle "pangloss/vim-javascript"
 
