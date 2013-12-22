@@ -150,6 +150,16 @@ au! BufRead,BufNewFile *.json set filetype=javascript
 autocmd BufWritePost *.coffee silent make!
 "vim-mou 插件配置
 let g:mou_dir = "/Applications/Mou.app"
+" Syntastic 配置
+let g:syntastic_javascript_checkers=['jshint']
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_jump=1
+"let g:syntastic_check_on_open=1
+"let g:syntastic_stl_format = '[%E{ Err: %fe #%e}%B{ , }%W{ Warn: %fw #%w}]'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 
 " My bundles here:
@@ -167,22 +177,25 @@ Bundle 'gmarik/vundle'
 " utility
 Bundle 'The-NERD-tree'
 "Bundle 'jsbeautify'
-Bundle 'vim-mou'
-Bundle 'vim-coffee-script'
+"Bundle 'vim-mou'
+"Bundle 'vim-coffee-script'
 Bundle 'Emmet.vim'
-Bundle 'Indent-Guides'
-Bundle 'Colorizer--Brabandt'
+"Bundle 'Indent-Guides'
+"Bundle 'Colorizer--Brabandt'
 Bundle 'mru.vim'
-Bundle 'surround.vim'
-Bundle 'VimIM'
-Bundle 'vimcdoc'
-Bundle 'listtag'
-Bundle 'Lynn-cc/jsbeautify'
+"Bundle 'surround.vim'
+"Bundle 'VimIM'
+"Bundle 'vimcdoc'
+"Bundle 'listtag'
+"Bundle 'Lynn-cc/jsbeautify'
 "Bundle 'Tagbar'
+Bundle 'pathogen.vim'
+Bundle 'Syntastic'
+"Bundle 'Conque-Shell'
 
 "Dash
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rizzatti/dash.vim'
+"Bundle 'rizzatti/funcoo.vim'
+"Bundle 'rizzatti/dash.vim'
 
 
 "indent and syntax
@@ -195,9 +208,6 @@ Bundle "pangloss/vim-javascript"
 "Bundle 'JavaScript-Indent'
 "Bundle 'html-improved-indentation'
 "Bundle 'sh.vim'
-"Bundle ''
-"Bundle ''
-"
 
 "syntax
 "Bundle 'Sass'
@@ -205,11 +215,8 @@ Bundle "pangloss/vim-javascript"
 "Bundle 'jQuery'
 "Bundle 'HTML5-Syntax-File'
 "Bundle 'jelera/vim-javascript-syntax'
-"Bundle ''
-"Bundle ''
-"Bundle ''
 
-" original repos on GitHub
+" examples
 "Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 "Bundle 'tpope/vim-rails.git'
 " non-GitHub repos
@@ -217,6 +224,9 @@ Bundle "pangloss/vim-javascript"
 " Git repos on your local machine (i.e. when working on your own plugin)
 "Bundle 'file:///Users/gmarik/path/to/plugin'
 " ...
+
+"call pathogen#infect()
+"execute pathogen#infect()
 
 filetype plugin indent on     " required!
 "
