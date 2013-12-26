@@ -110,7 +110,9 @@ nmap <Leader>i :call indent_guides#toggle()<CR>
 " NERDTree快捷键
 map nt :NERDTree<CR>
 " Mou打开
-nmap <leader>m :MouOpen<CR>
+" nmap <leader>m :MouOpen<CR>
+" 关闭语法检查
+nmap <leader>d :SyntasticToggleMode<CR>
 
 " 用空格键来开关折叠
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
@@ -139,21 +141,21 @@ let g:NERDTreeWinSize=20
 " IndentGuides
 let g:indent_guides_guide_size=1
 "coffee配置
-let coffee_compile_vert = 1
-let coffee_watch_vert = 1
+"let coffee_compile_vert = 1
+"let coffee_watch_vert = 1
 " 强制文件类型
 au BufRead,BufNewFile jquery.*.js jq.js set ft=jquery
 au BufRead,BufNewFile *.tpl set ft=html
 au BufRead,BufNewFile *.md set ft=markdown
 au! BufRead,BufNewFile *.json set filetype=javascript
 " coffee即时编译
-autocmd BufWritePost *.coffee silent make!
+"autocmd BufWritePost *.coffee silent make!
 "vim-mou 插件配置
 let g:mou_dir = "/Applications/Mou.app"
 " Syntastic 配置
 let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_enable_signs=1
-let g:syntastic_auto_jump=1
+"let g:syntastic_auto_jump=1
 "let g:syntastic_check_on_open=1
 "let g:syntastic_stl_format = '[%E{ Err: %fe #%e}%B{ , }%W{ Warn: %fw #%w}]'
 
