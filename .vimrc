@@ -102,7 +102,7 @@ endif
 " 删除行尾空白
 map <leader>b :%s/[ \t\r]\+$//g<cr>
 " 把文件内的tab转换成空格
-nmap <leader>r :retab! 4<CR>
+nmap <leader>r :%retab!<CR>
 " 高亮当前列
 nmap <Leader>h :call SetColorColumn()<CR>
 " IndentGuides
@@ -134,8 +134,8 @@ inoremap < <><LEFT>
 highlight tailBlack ctermbg=red guibg=#555555
 match tailBlack /\(\S\+\)\@<=[ \t\r]\+$/
 " 高亮80字符限制
-highlight overLength ctermbg=red guibg=#792929
-2match overLength /\(.\{80}\)\@<=.*\S\+/
+" highlight overLength ctermbg=red guibg=#792929
+" 2match overLength /\(.\{80}\)\@<=.*\S\+/
 " NERDTree设置窗口宽度
 let g:NERDTreeWinSize=20
 " IndentGuides
@@ -202,6 +202,7 @@ Bundle 'Syntastic'
 
 "indent and syntax
 Bundle "pangloss/vim-javascript"
+Bundle "php.vim-html-enhanced"
 
 "indent
 "Bundle 'indentpython.vim'
