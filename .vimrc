@@ -23,7 +23,7 @@ set guioptions-=m                     " 隐藏菜单栏
 
 " 缩进
 set expandtab                         " 使用space代替tab.
-set smarttab                          " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
+"set smarttab                          " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
 set smartindent                       " 开启新行时使用智能自动缩进
 set shiftwidth=4                      " 每一级缩进是多少个空格
 set softtabstop=4                     " 使得按退格键时可以一次删掉 4 个空格
@@ -180,7 +180,7 @@ Bundle 'gmarik/vundle'
 Bundle 'The-NERD-tree'
 "Bundle 'jsbeautify'
 "Bundle 'vim-mou'
-"Bundle 'vim-coffee-script'
+Bundle 'vim-coffee-script'
 Bundle 'Emmet.vim'
 "Bundle 'Indent-Guides'
 "Bundle 'Colorizer--Brabandt'
