@@ -1,3 +1,4 @@
+set diffexpr=
 " 文件编码
 set fileencodings=ucs-bom,utf-8,gbk,cp936 ",gb18030,big5,latin1 "文件编码检查
 set encoding=utf-8               "vim内部编码
@@ -194,6 +195,8 @@ Bundle 'mru.vim'
 Bundle 'pathogen.vim'
 Bundle 'Syntastic'
 "Bundle 'Conque-Shell'
+"Bundle 'Command-T'
+Bundle 'Lokaltog/vim-powerline'
 
 "Dash
 "Bundle 'rizzatti/funcoo.vim'
