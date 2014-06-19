@@ -1,4 +1,3 @@
-set diffexpr=
 " 文件编码
 set fileencodings=ucs-bom,utf-8,gbk,cp936 ",gb18030,big5,latin1 "文件编码检查
 set encoding=utf-8               "vim内部编码
@@ -26,9 +25,9 @@ set guioptions-=m                     " 隐藏菜单栏
 set expandtab                         " 使用space代替tab.
 "set smarttab                          " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
 set smartindent                       " 开启新行时使用智能自动缩进
-set shiftwidth=4                      " 每一级缩进是多少个空格
-set softtabstop=4                     " 使得按退格键时可以一次删掉 4 个空格
-set tabstop=4                         " 设定 tab 长度
+set shiftwidth=2                      " 每一级缩进是多少个空格
+set softtabstop=2                     " 使得按退格键时可以一次删掉 4 个空格
+set tabstop=2                         " 设定 tab 长度
 set autoindent                        " Auto indent
 set cindent                           " C-style indeting
 
@@ -125,7 +124,7 @@ nmap <RIGHT> <C-w>l
 " 插入匹配括号
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
-inoremap { {}<LEFT><CR><ESC>O
+"inoremap { {}<LEFT><CR><ESC>O
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
 inoremap < <><LEFT>
@@ -214,10 +213,11 @@ Bundle "php.vim-html-enhanced"
 "Bundle 'JavaScript-Indent'
 "Bundle 'html-improved-indentation'
 "Bundle 'sh.vim'
+Bundle 'indenthtml.vim'
 
 "syntax
 "Bundle 'Sass'
-"Bundle 'Markdown-syntax'
+Bundle 'Markdown-syntax'
 "Bundle 'jQuery'
 "Bundle 'HTML5-Syntax-File'
 "Bundle 'jelera/vim-javascript-syntax'
