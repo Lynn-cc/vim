@@ -22,12 +22,12 @@ set guioptions-=T                     " 隐藏工具栏
 set guioptions-=m                     " 隐藏菜单栏
 
 " 缩进
-set expandtab                         " 使用space代替tab.
+"set expandtab                         " 使用space代替tab.
 "set smarttab                          " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
 set smartindent                       " 开启新行时使用智能自动缩进
-set shiftwidth=2                      " 每一级缩进是多少个空格
-set softtabstop=2                     " 使得按退格键时可以一次删掉 4 个空格
-set tabstop=2                         " 设定 tab 长度
+"set shiftwidth=4                      " 每一级缩进是多少个空格
+set softtabstop=4                     " 使得按退格键时可以一次删掉 4 个空格
+set tabstop=4                         " 设定 tab 长度
 set autoindent                        " Auto indent
 set cindent                           " C-style indeting
 
@@ -255,27 +255,30 @@ function! SetColorColumn()
     endif
 endfunction
 
-set diffexpr=MyDiff()
-function! MyDiff()
-    let opt = '-a --binary '
-    if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-    if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-    let arg1 = v:fname_in
-    if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-    let arg2 = v:fname_new
-    if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-    let arg3 = v:fname_out
-    if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-    let eq = ''
-    if $VIMRUNTIME =~ ' '
-        if &sh =~ '\<cmd'
-            let cmd = '""' . $VIMRUNTIME . '\diff"'
-            let eq = '"'
+
+if (has("win32") || has("win64") || has("win32unix"))
+    set diffexpr=MyDiff()
+    function! MyDiff()
+        let opt = '-a --binary '
+        if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+        if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+        let arg1 = v:fname_in
+        if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+        let arg2 = v:fname_new
+        if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+        let arg3 = v:fname_out
+        if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+        let eq = ''
+        if $VIMRUNTIME =~ ' '
+            if &sh =~ '\<cmd'
+                let cmd = '""' . $VIMRUNTIME . '\diff"'
+                let eq = '"'
+            else
+                let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+            endif
         else
-            let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+            let cmd = $VIMRUNTIME . '\diff'
         endif
-    else
-        let cmd = $VIMRUNTIME . '\diff'
-    endif
-    silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
+        silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+    endfunction
+endif
