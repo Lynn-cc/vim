@@ -160,7 +160,6 @@ au! BufRead,BufNewFile *.json set filetype=javascript
 "vim-mou 插件配置
 "let g:mou_dir = "/Applications/Mou.app"
 " Syntastic 配置
-let g:syntastic_javascript_jshint_args = '--config /User/tongcheng/.jshintrc'
 "let g:syntastic_debug = 3 "debug
 let g:statline_syntastic = 1
 let g:syntastic_javascript_checkers = ['jshint']
@@ -185,13 +184,13 @@ if (has("win32") || has("win64") || has("win32unix"))
     let path='~/vimfiles/bundle'
     call vundle#begin(path)
 else
-    set rtp+=~/.vim/bundle/vundle
+    set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
 endif
 
 " let Vundle manage Vundle
 " required!
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " vim-scripts repos
 " utility
@@ -212,6 +211,8 @@ Plugin 'Syntastic'
 "Plugin 'Conque-Shell'
 "Plugin 'Command-T'
 Plugin 'Lokaltog/vim-powerline'
+" Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 "Dash
 "Plugin 'rizzatti/funcoo.vim'
