@@ -114,7 +114,7 @@ map nt :NERDTree<CR>
 " Mou打开
 " nmap <leader>m :MouOpen<CR>
 " 关闭语法检查
-nmap <leader>d :SyntasticToggleMode<CR>
+"nmap <leader>d :SyntasticToggleMode<CR>
 
 " 用空格键来开关折叠
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
@@ -149,7 +149,7 @@ let g:NERDTreeWinSize=20
 " 强制文件类型
 "au BufRead,BufNewFile jquery.*.js jq.js set ft=jquery
 "au BufRead,BufNewFile *.tpl set ft=html
-"au BufRead,BufNewFile *.md set ft=markdown
+au BufRead,BufNewFile *.md set ft=markdown
 au! BufRead,BufNewFile *.json set filetype=javascript
 
 "保存文件时自动运行命令
@@ -160,20 +160,21 @@ au! BufRead,BufNewFile *.json set filetype=javascript
 "vim-mou 插件配置
 "let g:mou_dir = "/Applications/Mou.app"
 " Syntastic 配置
-let g:syntastic_javascript_jshint_args = '--config ~/.jshintrc'
+let g:syntastic_javascript_jshint_args = '--config /User/tongcheng/.jshintrc'
+"let g:syntastic_debug = 3 "debug
 let g:statline_syntastic = 1
-let g:syntastic_javascript_checkers=['jshint']
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_jump=1
-let g:syntastic_check_on_open=1
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_enable_signs = 1
+let g:syntastic_auto_jump = 1
+let g:syntastic_check_on_open = 1
 let g:syntastic_stl_format = '[%E{ Err: %fe #%e}%B{ , }%W{ Warn: %fw #%w}]'
 
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+"for pangloss/vim-javascript
 let g:used_javascript_libs = 'angularjs,jquery'
-
 
 " My bundles here:
 set nocompatible              " be iMproved
@@ -195,7 +196,6 @@ Plugin 'gmarik/vundle'
 " vim-scripts repos
 " utility
 Plugin 'The-NERD-tree'
-"Plugin 'jsbeautify'
 "Plugin 'vim-mou'
 "Plugin 'vim-coffee-script'
 Plugin 'Emmet.vim'
@@ -206,9 +206,8 @@ Plugin 'mru.vim'
 "Plugin 'VimIM'
 "Plugin 'vimcdoc'
 "Plugin 'listtag'
-Plugin 'Lynn-cc/jsbeautify'
 "Plugin 'Tagbar'
-"Plugin 'pathogen.vim'
+Plugin 'pathogen.vim'
 Plugin 'Syntastic'
 "Plugin 'Conque-Shell'
 "Plugin 'Command-T'
@@ -223,8 +222,10 @@ Plugin 'pangloss/vim-javascript'
 "Plugin 'php.vim-html-enhanced'
 
 "indent
-"Plugin 'indentpython.vim'
+"Plugin 'jsbeautify'
+Plugin 'Lynn-cc/jsbeautify'
 Plugin 'Simple-Javascript-Indenter'
+"Plugin 'indentpython.vim'
 "Plugin 'jade.vim'
 "Plugin 'JavaScript-Indent'
 "Plugin 'html-improved-indentation'
