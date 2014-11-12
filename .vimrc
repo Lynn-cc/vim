@@ -20,12 +20,14 @@ set number                            " 显示行号
 "set ruler                             " 打开状态栏标尺
 set guioptions-=T                     " 隐藏工具栏
 set guioptions-=m                     " 隐藏菜单栏
+"set list
+"set listchars=tab:¦\ ,eol:¬           " 设置tab显示和末尾显示
 
 " 缩进
-"set expandtab                         " 使用space代替tab.
+set expandtab                         " 使用space代替tab.
 "set smarttab                          " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
 set smartindent                       " 开启新行时使用智能自动缩进
-"set shiftwidth=4                      " 每一级缩进是多少个空格
+set shiftwidth=4                      " 每一级缩进是多少个空格
 set softtabstop=4                     " 使得按退格键时可以一次删掉 4 个空格
 set tabstop=4                         " 设定 tab 长度
 set autoindent                        " Auto indent
@@ -139,108 +141,116 @@ match tailBlack /\(\S\+\)\@<=[ \t\r]\+$/
 " NERDTree设置窗口宽度
 let g:NERDTreeWinSize=20
 " IndentGuides
-let g:indent_guides_guide_size=1
+"let g:indent_guides_guide_size=1
 "coffee配置
 "let coffee_compile_vert = 1
 "let coffee_watch_vert = 1
+
 " 强制文件类型
-au BufRead,BufNewFile jquery.*.js jq.js set ft=jquery
-au BufRead,BufNewFile *.tpl set ft=html
-au BufRead,BufNewFile *.md set ft=markdown
+"au BufRead,BufNewFile jquery.*.js jq.js set ft=jquery
+"au BufRead,BufNewFile *.tpl set ft=html
+"au BufRead,BufNewFile *.md set ft=markdown
 au! BufRead,BufNewFile *.json set filetype=javascript
+
+"保存文件时自动运行命令
+"autocmd BufWritePre,FileWritePre
+
 " coffee即时编译
 "autocmd BufWritePost *.coffee silent make!
 "vim-mou 插件配置
-let g:mou_dir = "/Applications/Mou.app"
+"let g:mou_dir = "/Applications/Mou.app"
 " Syntastic 配置
+let g:syntastic_javascript_jshint_args = '--config ~/.jshintrc'
+let g:statline_syntastic = 1
 let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_enable_signs=1
-"let g:syntastic_auto_jump=1
-"let g:syntastic_check_on_open=1
-"let g:syntastic_stl_format = '[%E{ Err: %fe #%e}%B{ , }%W{ Warn: %fw #%w}]'
+let g:syntastic_auto_jump=1
+let g:syntastic_check_on_open=1
+let g:syntastic_stl_format = '[%E{ Err: %fe #%e}%B{ , }%W{ Warn: %fw #%w}]'
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+let g:used_javascript_libs = 'angularjs,jquery'
 
 
 " My bundles here:
 set nocompatible              " be iMproved
 filetype off                  " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+if (has("win32") || has("win64") || has("win32unix"))
+    set rtp+=~/vimfiles/bundle/Vundle.vim/
+    let path='~/vimfiles/bundle'
+    call vundle#begin(path)
+else
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
+endif
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " vim-scripts repos
 " utility
-Bundle 'The-NERD-tree'
-"Bundle 'jsbeautify'
-"Bundle 'vim-mou'
-Bundle 'vim-coffee-script'
-Bundle 'Emmet.vim'
-"Bundle 'Indent-Guides'
-"Bundle 'Colorizer--Brabandt'
-Bundle 'mru.vim'
-"Bundle 'surround.vim'
-"Bundle 'VimIM'
-"Bundle 'vimcdoc'
-"Bundle 'listtag'
-"Bundle 'Lynn-cc/jsbeautify'
-"Bundle 'Tagbar'
-Bundle 'pathogen.vim'
-Bundle 'Syntastic'
-"Bundle 'Conque-Shell'
-"Bundle 'Command-T'
-Bundle 'Lokaltog/vim-powerline'
+Plugin 'The-NERD-tree'
+"Plugin 'jsbeautify'
+"Plugin 'vim-mou'
+"Plugin 'vim-coffee-script'
+Plugin 'Emmet.vim'
+"Plugin 'Indent-Guides'
+"Plugin 'Colorizer--Brabandt'
+Plugin 'mru.vim'
+"Plugin 'surround.vim'
+"Plugin 'VimIM'
+"Plugin 'vimcdoc'
+"Plugin 'listtag'
+Plugin 'Lynn-cc/jsbeautify'
+"Plugin 'Tagbar'
+"Plugin 'pathogen.vim'
+Plugin 'Syntastic'
+"Plugin 'Conque-Shell'
+"Plugin 'Command-T'
+Plugin 'Lokaltog/vim-powerline'
 
 "Dash
-"Bundle 'rizzatti/funcoo.vim'
-"Bundle 'rizzatti/dash.vim'
-
+"Plugin 'rizzatti/funcoo.vim'
+"Plugin 'rizzatti/dash.vim'
 
 "indent and syntax
-Bundle "pangloss/vim-javascript"
-Bundle "php.vim-html-enhanced"
+Plugin 'pangloss/vim-javascript'
+"Plugin 'php.vim-html-enhanced'
 
 "indent
-"Bundle 'indentpython.vim'
-"Bundle 'Simple-Javascript-Indenter'
-"Bundle 'jade.vim'
-"Bundle 'JavaScript-Indent'
-"Bundle 'html-improved-indentation'
-"Bundle 'sh.vim'
-Bundle 'indenthtml.vim'
+"Plugin 'indentpython.vim'
+Plugin 'Simple-Javascript-Indenter'
+"Plugin 'jade.vim'
+"Plugin 'JavaScript-Indent'
+"Plugin 'html-improved-indentation'
+"Plugin 'sh.vim'
+Plugin 'indenthtml.vim'
 
 "syntax
-"Bundle 'Sass'
-Bundle 'Markdown-syntax'
-"Bundle 'jQuery'
-"Bundle 'HTML5-Syntax-File'
-"Bundle 'jelera/vim-javascript-syntax'
+"Plugin 'Sass'
+Plugin 'Markdown-syntax'
+"Plugin 'jQuery'
+"Plugin 'HTML5-Syntax-File'
+"Plugin 'jelera/vim-javascript-syntax'
+Plugin 'othree/javascript-libraries-syntax.vim'
 
-" examples
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Bundle 'tpope/vim-rails.git'
-" non-GitHub repos
-"Bundle 'git://git.wincent.com/command-t.git'
-" Git repos on your local machine (i.e. when working on your own plugin)
-"Bundle 'file:///Users/gmarik/path/to/plugin'
-" ...
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
-"call pathogen#infect()
-"execute pathogen#infect()
-
-filetype plugin indent on     " required!
-"
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install (update) bundles
-" :BundleSearch(!) foo - search (or refresh cache first) for foo
-" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 
 " 其他函数
@@ -268,17 +278,22 @@ if (has("win32") || has("win64") || has("win32unix"))
         if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
         let arg3 = v:fname_out
         if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-        let eq = ''
         if $VIMRUNTIME =~ ' '
             if &sh =~ '\<cmd'
-                let cmd = '""' . $VIMRUNTIME . '\diff"'
-                let eq = '"'
+                if empty(&shellxquote)
+                    let l:shxq_sav = ''
+                    set shellxquote&
+                endif
+                let cmd = '"' . $VIMRUNTIME . '\diff"'
             else
                 let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
             endif
         else
             let cmd = $VIMRUNTIME . '\diff'
         endif
-        silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+        silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
+        if exists('l:shxq_sav')
+            let &shellxquote=l:shxq_sav
+        endif
     endfunction
 endif
