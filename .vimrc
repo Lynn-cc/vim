@@ -169,9 +169,9 @@ let g:syntastic_auto_jump = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_stl_format = '[%E{ Err: %fe #%e}%B{ , }%W{ Warn: %fw #%w}]'
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 "for pangloss/vim-javascript
 let g:used_javascript_libs = 'angularjs,jquery'
@@ -185,7 +185,7 @@ if (has("win32") || has("win64") || has("win32unix"))
     let path='~/vimfiles/bundle'
     call vundle#begin(path)
 else
-    set rtp+=~/.vim/bundle/Vundle.vim
+    set rtp+=~/.vim/bundle/vundle
     call vundle#begin()
 endif
 
