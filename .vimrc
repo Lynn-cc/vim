@@ -161,12 +161,12 @@ au! BufRead,BufNewFile *.json set filetype=javascript
 "let g:mou_dir = "/Applications/Mou.app"
 " Syntastic 配置
 "let g:syntastic_debug = 3 "debug
-let g:statline_syntastic = 1
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_enable_signs = 1
-let g:syntastic_auto_jump = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_stl_format = '[%E{ Err: %fe #%e}%B{ , }%W{ Warn: %fw #%w}]'
+"let g:statline_syntastic = 0
+"let g:syntastic_javascript_checkers = ['jshint']
+"let g:syntastic_enable_signs = 1
+"let g:syntastic_auto_jump = 0
+"let g:syntastic_check_on_open = 0
+"let g:syntastic_stl_format = '[%E{ Err: %fe #%e}%B{ , }%W{ Warn: %fw #%w}]'
 
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
@@ -207,7 +207,7 @@ Plugin 'mru.vim'
 "Plugin 'listtag'
 "Plugin 'Tagbar'
 Plugin 'pathogen.vim'
-Plugin 'Syntastic'
+"Plugin 'Syntastic'
 "Plugin 'Conque-Shell'
 "Plugin 'Command-T'
 Plugin 'Lokaltog/vim-powerline'
