@@ -50,10 +50,10 @@ set novisualbell                      " 关闭使用可视响铃代替呼叫
 set t_vb=                             " 置空错误铃声的终端代码
 
 " 折叠
-"set foldenable                        " 开始折叠
+set foldenable                        " 开始折叠
 "set foldmethod=indent                 " 设置语法折叠
 "set foldcolumn=0                      " 设置折叠区域的宽度
-"setlocal foldlevel=1                  " 设置折叠层数
+setlocal foldlevel=1                  " 设置折叠层数
 "set completeopt=longest,menu          " 即时显示自动提示
 set foldclose=all                      " 设置为自动关闭折叠
 
@@ -75,6 +75,9 @@ if (has("win32") || has("win64") || has("win32unix"))
     set guifontwide=YouYuan:h11:cGB2312
     set guifont=Monaco:h11
 
+    "for powline
+    let g:Powerline_stl_path_style = 'full'
+
     " 快捷载入vimrc
     nmap <leader>s <ESC>:source ~/.vimrc<CR>
 
@@ -85,6 +88,9 @@ else
     set fileformat=unix
     set fileformats=unix
     set guifont=Monaco:h14
+
+    "for powline
+    let g:Powerline_stl_path_style = 'short'
 
     " mac替换ESC
     " inoremap ` <ESC>
