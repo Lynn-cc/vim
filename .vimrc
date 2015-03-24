@@ -50,10 +50,17 @@ set novisualbell                      " 关闭使用可视响铃代替呼叫
 set t_vb=                             " 置空错误铃声的终端代码
 
 " 折叠
+<<<<<<< HEAD
 "set foldenable                        " 开始折叠
 "set foldmethod=indent                 " 设置语法折叠
 "set foldcolumn=0                      " 设置折叠区域的宽度
 "setlocal foldlevel=1                  " 设置折叠层数
+=======
+set foldenable                        " 开始折叠
+"set foldmethod=indent                 " 设置语法折叠
+"set foldcolumn=0                      " 设置折叠区域的宽度
+setlocal foldlevel=1                  " 设置折叠层数
+>>>>>>> 8bb061aa4e1ff4307cd0df802890e5830f44fd6c
 "set completeopt=longest,menu          " 即时显示自动提示
 set foldclose=all                      " 设置为自动关闭折叠
 
@@ -75,6 +82,12 @@ if (has("win32") || has("win64") || has("win32unix"))
     set guifontwide=YouYuan:h11:cGB2312
     set guifont=Monaco:h11
 
+<<<<<<< HEAD
+=======
+    "for powline
+    let g:Powerline_stl_path_style = 'full'
+
+>>>>>>> 8bb061aa4e1ff4307cd0df802890e5830f44fd6c
     " 快捷载入vimrc
     nmap <leader>s <ESC>:source ~/.vimrc<CR>
 
@@ -86,6 +99,12 @@ else
     set fileformats=unix
     set guifont=Monaco:h14
 
+<<<<<<< HEAD
+=======
+    "for powline
+    let g:Powerline_stl_path_style = 'short'
+
+>>>>>>> 8bb061aa4e1ff4307cd0df802890e5830f44fd6c
     " mac替换ESC
     " inoremap ` <ESC>
 
@@ -145,8 +164,11 @@ let g:NERDTreeWinSize=20
 "coffee配置
 "let coffee_compile_vert = 1
 "let coffee_watch_vert = 1
+<<<<<<< HEAD
 "indenthtml
 let g:html_indent_inctags = "html, body, head, li, script, style, meta, link, title"
+=======
+>>>>>>> 8bb061aa4e1ff4307cd0df802890e5830f44fd6c
 
 " 强制文件类型
 "au BufRead,BufNewFile jquery.*.js jq.js set ft=jquery
@@ -226,12 +248,20 @@ Plugin 'pangloss/vim-javascript'
 
 "indent
 "Plugin 'jsbeautify'
+<<<<<<< HEAD
 "Plugin 'Lynn-cc/jsbeautify'
+=======
+Plugin 'Lynn-cc/jsbeautify'
+>>>>>>> 8bb061aa4e1ff4307cd0df802890e5830f44fd6c
 Plugin 'Simple-Javascript-Indenter'
 "Plugin 'indentpython.vim'
 "Plugin 'jade.vim'
 "Plugin 'JavaScript-Indent'
+<<<<<<< HEAD
 Plugin 'html-improved-indentation'
+=======
+"Plugin 'html-improved-indentation'
+>>>>>>> 8bb061aa4e1ff4307cd0df802890e5830f44fd6c
 "Plugin 'sh.vim'
 Plugin 'indenthtml.vim'
 
