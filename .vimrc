@@ -12,7 +12,7 @@ syntax on                             " 自动语法高亮
 "filetype on                           " 自动检查文件类型
 
 " 显示
-colorscheme ccmolakai                 " 设定配色方案
+colorscheme rolin                 " 设定配色方案
 set number                            " 显示行号
 "set cursorline                       " 突出显示当前行
 "set wrap                             " 设置折行
@@ -25,7 +25,7 @@ set guioptions-=m                     " 隐藏菜单栏
 
 " 缩进
 set expandtab                         " 使用space代替tab.
-"set smarttab                          " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
+set smarttab                          " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
 set smartindent                       " 开启新行时使用智能自动缩进
 set shiftwidth=4                      " 每一级缩进是多少个空格
 set softtabstop=4                     " 使得按退格键时可以一次删掉 4 个空格
@@ -39,7 +39,7 @@ set backupcopy=yes                    " 设置备份时的行为为覆盖
 set autochdir                         " 自动切换当前目录为当前文件所在的目录
 
 " 搜索
-set ignorecase smartcase              " 搜索忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
+set ignorecase "smartcase              " 搜索忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
 set nowrapscan                        " 禁止在搜索到文件两端时重新搜索
 set incsearch                         " 输入搜索内容时就显示搜索结果
 set hlsearch                          " 搜索时高亮显示被找到的文本
@@ -50,11 +50,10 @@ set novisualbell                      " 关闭使用可视响铃代替呼叫
 set t_vb=                             " 置空错误铃声的终端代码
 
 " 折叠
-
-set foldenable                        " 开始折叠
+"set foldenable                        " 开始折叠
 "set foldmethod=indent                 " 设置语法折叠
 "set foldcolumn=0                      " 设置折叠区域的宽度
-setlocal foldlevel=1                  " 设置折叠层数
+"setlocal foldlevel=1                  " 设置折叠层数
 "set completeopt=longest,menu          " 即时显示自动提示
 set foldclose=all                      " 设置为自动关闭折叠
 
@@ -73,11 +72,8 @@ if (has("win32") || has("win64") || has("win32unix"))
     source $VIMRUNTIME/mswin.vim                         " 载入window配置
     set fileformat=dos
     set fileformats=dos
-    set guifontwide=YouYuan:h11:cGB2312
-    set guifont=Monaco:h11
-
-    "for powline
-    let g:Powerline_stl_path_style = 'full'
+    set guifontwide=YouYuan:h10:cGB2312
+    set guifont=Monaco:h10
 
     " 快捷载入vimrc
     nmap <leader>s <ESC>:source ~/.vimrc<CR>
@@ -85,13 +81,15 @@ if (has("win32") || has("win64") || has("win32unix"))
     " 快捷打开.vimrc
     nmap <leader>z <ESC>:vnew ~/.vimrc<CR>
 
+    "let &shell='C:\Windows\System32\cmd.exe'
+    if &shell=~#'bash$'
+        set shell=$COMSPEC " sets shell to correct path for cmd.exe
+    endif
+
 else
     set fileformat=unix
     set fileformats=unix
     set guifont=Monaco:h14
-
-    "for powline
-    let g:Powerline_stl_path_style = 'short'
 
     " mac替换ESC
     " inoremap ` <ESC>
@@ -107,29 +105,46 @@ else
 
 endif
 
-" 各种快捷键
+" ------------------各种快捷键------------------
 " 删除行尾空白
 map <leader>b :%s/[ \t\r]\+$//g<cr>
+
 " 把文件内的tab转换成空格
 nmap <leader>r :%retab!<CR>
+
 " 高亮当前列
 nmap <Leader>h :call SetColorColumn()<CR>
+
 " IndentGuides
-nmap <Leader>i :call indent_guides#toggle()<CR>
+" nmap <Leader>i :call indent_guides#toggle()<CR>
+
+" TODO 检测
+nmap <Leader>t :vim /TODO/g ./*<CR>
+
 " NERDTree快捷键
 map nt :NERDTree<CR>
+
+map <Leader>j :call JsBeautify()<cr>
+"map <Leader>x :call JsonBeautify()<cr>
+"map <Leader>x :call JsxBeautify()<cr>
+"map <Leader>x :call HtmlBeautify()<cr>
+"map <Leader>x :call CSSBeautify()<cr>
+
 " Mou打开
 " nmap <leader>m :MouOpen<CR>
+
 " 关闭语法检查
-"nmap <leader>d :SyntasticToggleMode<CR>
+nmap <leader>d :SyntasticToggleMode<CR>
 
 " 用空格键来开关折叠
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+
 " 上下左右方向键切换窗口
 nmap <LEFT> <C-w>h
 nmap <DOWN> <C-w>j
 nmap <UP> <C-w>k
 nmap <RIGHT> <C-w>l
+
 " 插入匹配括号
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
@@ -138,90 +153,59 @@ inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
 inoremap < <><LEFT>
 
+
 " 各种设置, 自动运行
 " 高亮行尾空白
-highlight tailBlack ctermbg=red guibg=#555555
+highlight tailBlack ctermbg=red guibg=#990000
 match tailBlack /\(\S\+\)\@<=[ \t\r]\+$/
+
 " 高亮80字符限制
 " highlight overLength ctermbg=red guibg=#792929
 " 2match overLength /\(.\{80}\)\@<=.*\S\+/
-" NERDTree设置窗口宽度
-let g:NERDTreeWinSize=20
-" IndentGuides
-"let g:indent_guides_guide_size=1
-"coffee配置
-"let coffee_compile_vert = 1
-"let coffee_watch_vert = 1
-"indenthtml
-let g:html_indent_inctags = "html, body, head, li, script, style, meta, link, title"
 
-" 强制文件类型
-"au BufRead,BufNewFile jquery.*.js jq.js set ft=jquery
-"au BufRead,BufNewFile *.tpl set ft=html
-au BufRead,BufNewFile *.md set ft=markdown
-au! BufRead,BufNewFile *.json set filetype=javascript
-
-"保存文件时自动运行命令
-"autocmd BufWritePre,FileWritePre
-
-" coffee即时编译
-"autocmd BufWritePost *.coffee silent make!
-"vim-mou 插件配置
-"let g:mou_dir = "/Applications/Mou.app"
-" Syntastic 配置
-"let g:syntastic_debug = 3 "debug
-"let g:statline_syntastic = 0
-"let g:syntastic_javascript_checkers = ['jshint']
-"let g:syntastic_enable_signs = 1
-"let g:syntastic_auto_jump = 0
-"let g:syntastic_check_on_open = 0
-"let g:syntastic_stl_format = '[%E{ Err: %fe #%e}%B{ , }%W{ Warn: %fw #%w}]'
-
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"for pangloss/vim-javascript
-let g:used_javascript_libs = 'angularjs,jquery'
+" ----------------------------bundles----------------------------
 
 " My bundles here:
 set nocompatible              " be iMproved
 filetype off                  " required!
 
 if (has("win32") || has("win64") || has("win32unix"))
-    set rtp+=~/vimfiles/bundle/Vundle.vim/
-    let path='~/vimfiles/bundle'
-    call vundle#begin(path)
+    set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
+    call vundle#begin('$HOME/vimfiles/bundle/')
 else
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#begin('~/.vim/bundle/')
 endif
 
 " let Vundle manage Vundle
 " required!
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " vim-scripts repos
 " utility
-Plugin 'The-NERD-tree'
+Plugin 'pathogen.vim'
 "Plugin 'vim-mou'
 "Plugin 'vim-coffee-script'
-Plugin 'Emmet.vim'
+Plugin 'mattn/emmet-vim'
 "Plugin 'Indent-Guides'
-"Plugin 'Colorizer--Brabandt'
-Plugin 'mru.vim'
+"Plugin 'Colorizer--Brabandt' "disabled
 "Plugin 'surround.vim'
 "Plugin 'VimIM'
 "Plugin 'vimcdoc'
 "Plugin 'listtag'
 "Plugin 'Tagbar'
-Plugin 'pathogen.vim'
-"Plugin 'Syntastic'
 "Plugin 'Conque-Shell'
 "Plugin 'Command-T'
-Plugin 'Lokaltog/vim-powerline'
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Plugin 'Lokaltog/vim-powerline'
+Plugin 'ternjs/tern_for_vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'ctrlpvim/ctrlp.vim'
+
+"Tool
+Plugin 'mru.vim'
+Plugin 'The-NERD-tree'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'maksimr/vim-jsbeautify'
 
 "Dash
 "Plugin 'rizzatti/funcoo.vim'
@@ -230,30 +214,31 @@ Plugin 'Lokaltog/vim-powerline'
 "indent and syntax
 Plugin 'pangloss/vim-javascript'
 "Plugin 'php.vim-html-enhanced'
+"Plugin 'axiaoxin/vim-json-line-format'
 
 "indent
-"Plugin 'jsbeautify'
-"Plugin 'Lynn-cc/jsbeautify'
-Plugin 'Simple-Javascript-Indenter'
 "Plugin 'indentpython.vim'
+"Plugin 'Simple-Javascript-Indenter'
 "Plugin 'jade.vim'
 "Plugin 'JavaScript-Indent'
-Plugin 'html-improved-indentation'
+"Plugin 'html-improved-indentation'
 "Plugin 'sh.vim'
-Plugin 'indenthtml.vim'
+"Plugin 'indenthtml.vim'
 
 "syntax
 "Plugin 'Sass'
-Plugin 'Markdown-syntax'
+"Plugin 'Markdown-syntax'
 "Plugin 'jQuery'
 "Plugin 'HTML5-Syntax-File'
 "Plugin 'jelera/vim-javascript-syntax'
-Plugin 'othree/javascript-libraries-syntax.vim'
+"Plugin 'othree/javascript-libraries-syntax.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
 " Brief help
 " :PluginList       - lists configured plugins
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
@@ -263,6 +248,52 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+
+" ------------------插件、变量设置------------------
+
+" NERDTree
+let g:NERDTreeWinSize=20
+
+" IndentGuides
+"let g:indent_guides_guide_size=1
+
+"coffee配置
+"let coffee_compile_vert = 1
+"let coffee_watch_vert = 1
+
+"先加载路径处理插件
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+
+" coffee即时编译
+"autocmd BufWritePost *.coffee silent make!
+
+"vim-mou 插件配置(mac)
+"let g:mou_dir = "/Applications/Mou.app"
+
+" for 'vim-syntastic/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+"let g:syntastic_loc_list_height = 10
+
+"let g:used_javascript_libs = 'jquery,angularjs,backbone'
+
+
+" for 'ctrlpvim/ctrlp.vim'
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|node_modules)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ }
+
+
+" ------------------其他函数------------------
 
 " 其他函数
 " 高亮当前列函数
@@ -279,32 +310,32 @@ endfunction
 
 if (has("win32") || has("win64") || has("win32unix"))
     set diffexpr=MyDiff()
-    function! MyDiff()
-        let opt = '-a --binary '
-        if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-        if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-        let arg1 = v:fname_in
-        if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-        let arg2 = v:fname_new
-        if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-        let arg3 = v:fname_out
-        if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-        if $VIMRUNTIME =~ ' '
-            if &sh =~ '\<cmd'
-                if empty(&shellxquote)
-                    let l:shxq_sav = ''
-                    set shellxquote&
-                endif
-                let cmd = '"' . $VIMRUNTIME . '\diff"'
-            else
-                let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-            endif
-        else
-            let cmd = $VIMRUNTIME . '\diff'
-        endif
-        silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
-        if exists('l:shxq_sav')
-            let &shellxquote=l:shxq_sav
-        endif
-    endfunction
+ function! MyDiff()
+   let opt = '-a --binary '
+   if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+   if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+   let arg1 = v:fname_in
+   if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+   let arg2 = v:fname_new
+   if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+   let arg3 = v:fname_out
+   if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+   if $VIMRUNTIME =~ ' '
+     if &sh =~ '\<cmd'
+       if empty(&shellxquote)
+         let l:shxq_sav = ''
+         set shellxquote&
+       endif
+       let cmd = '"' . $VIMRUNTIME . '\diff"'
+     else
+       let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+     endif
+   else
+     let cmd = $VIMRUNTIME . '\diff'
+   endif
+   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3
+   if exists('l:shxq_sav')
+     let &shellxquote=l:shxq_sav
+   endif
+ endfunction
 endif
