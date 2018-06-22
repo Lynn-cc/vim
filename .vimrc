@@ -133,9 +133,6 @@ map <Leader>j :call JsBeautify()<cr>
 " Mou打开
 " nmap <leader>m :MouOpen<CR>
 
-" 关闭语法检查
-nmap <leader>d :SyntasticToggleMode<CR>
-
 " 用空格键来开关折叠
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
@@ -197,8 +194,8 @@ Plugin 'mattn/emmet-vim'
 "Plugin 'Conque-Shell'
 "Plugin 'Command-T'
 "Plugin 'Lokaltog/vim-powerline'
-Plugin 'ternjs/tern_for_vim'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'ternjs/tern_for_vim'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'ctrlpvim/ctrlp.vim'
 
 "Tool
@@ -280,6 +277,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 "let g:syntastic_loc_list_height = 10
+" 关闭语法检查
+nmap <leader>d :SyntasticToggleMode<CR>
 
 "let g:used_javascript_libs = 'jquery,angularjs,backbone'
 
@@ -291,6 +290,9 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.(git|hg|svn)|node_modules)$',
   \ 'file': '\v\.(exe|so|dll)$',
   \ }
+
+" for 'pangloss/vim-javascript'
+let g:javascript_plugin_jsdoc = 1
 
 
 " ------------------其他函数------------------
@@ -307,9 +309,7 @@ function! SetColorColumn()
     endif
 endfunction
 
-
-if (has("win32") || has("win64") || has("win32unix"))
-    set diffexpr=MyDiff()
+set diffexpr=MyDiff()
  function! MyDiff()
    let opt = '-a --binary '
    if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
@@ -338,4 +338,3 @@ if (has("win32") || has("win64") || has("win32unix"))
      let &shellxquote=l:shxq_sav
    endif
  endfunction
-endif
