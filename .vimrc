@@ -17,7 +17,7 @@ set number                            " 显示行号
 "set cursorline                       " 突出显示当前行
 "set wrap                             " 设置折行
 "set linebreak                        " 设置智能判断折行
-"set ruler                             " 打开状态栏标尺
+set ruler                             " 打开状态栏标尺
 set guioptions-=T                     " 隐藏工具栏
 set guioptions-=m                     " 隐藏菜单栏
 "set list
@@ -27,9 +27,9 @@ set guioptions-=m                     " 隐藏菜单栏
 set expandtab                         " 使用space代替tab.
 set smarttab                          " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
 set smartindent                       " 开启新行时使用智能自动缩进
-set shiftwidth=4                      " 每一级缩进是多少个空格
-set softtabstop=4                     " 使得按退格键时可以一次删掉 4 个空格
-set tabstop=4                         " 设定 tab 长度
+set shiftwidth=2                      " 每一级缩进是多少个空格
+set softtabstop=2                     " 使得按退格键时可以一次删掉 4 个空格
+set tabstop=2                         " 设定 tab 长度
 set autoindent                        " Auto indent
 set cindent                           " C-style indeting
 
@@ -130,11 +130,16 @@ map <Leader>j :call JsBeautify()<cr>
 "map <Leader>x :call HtmlBeautify()<cr>
 "map <Leader>x :call CSSBeautify()<cr>
 
+map <Leader>c :noh<cr>
+
 " Mou打开
 " nmap <leader>m :MouOpen<CR>
 
 " 用空格键来开关折叠
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+
+" for ruanyl/vim-fixmyjs
+noremap <Leader>f :Fixmyjs<CR>
 
 " 上下左右方向键切换窗口
 nmap <LEFT> <C-w>h
@@ -193,7 +198,7 @@ Plugin 'mattn/emmet-vim'
 "Plugin 'Tagbar'
 "Plugin 'Conque-Shell'
 "Plugin 'Command-T'
-"Plugin 'Lokaltog/vim-powerline'
+Plugin 'Lokaltog/vim-powerline'
 "Plugin 'ternjs/tern_for_vim'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -202,6 +207,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'mru.vim'
 Plugin 'The-NERD-tree'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'Chiel92/vim-autoformat'
 Plugin 'maksimr/vim-jsbeautify'
 
 "Dash
@@ -210,8 +216,9 @@ Plugin 'maksimr/vim-jsbeautify'
 
 "indent and syntax
 Plugin 'pangloss/vim-javascript'
-"Plugin 'php.vim-html-enhanced'
 "Plugin 'axiaoxin/vim-json-line-format'
+Plugin 'posva/vim-vue'
+Plugin 'ruanyl/vim-fixmyjs'
 
 "indent
 "Plugin 'indentpython.vim'
@@ -223,6 +230,7 @@ Plugin 'pangloss/vim-javascript'
 "Plugin 'indenthtml.vim'
 
 "syntax
+Plugin 'leafgarland/typescript-vim'
 "Plugin 'Sass'
 "Plugin 'Markdown-syntax'
 "Plugin 'jQuery'
@@ -268,6 +276,13 @@ execute pathogen#infect()
 "vim-mou 插件配置(mac)
 "let g:mou_dir = "/Applications/Mou.app"
 
+"powerline
+let g:Powerline_symbols = 'fancy'
+
+" ruanyl/vim-fixmyjs
+let g:fixmyjs_engine = 'eslint'
+
+
 " for 'vim-syntastic/syntastic'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -275,12 +290,30 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-"let g:syntastic_loc_list_height = 10
+let g:syntastic_check_on_wq = 1
+let g:syntastic_loc_list_height = 10
+" FOR DEBUG
+"let g:syntastic_debug=3
+let g:syntastic_debug=0
+"let g:syntastic_javascript_checkers = ['eslint', 'jshint']
+let g:syntastic_javascript_checkers = ['eslint']
+"let g:used_javascript_libs = 'jquery,angularjs,backbone'
 " 关闭语法检查
 nmap <leader>d :SyntasticToggleMode<CR>
+" find the root eslint config"
+function! FindConfig(prefix, what, where)
+    let cfg = findfile(a:what, escape(a:where, ' ') . ';')
+    return cfg !=# '' ? ' ' . a:prefix . ' ' . shellescape(cfg) : ''
+endfunction
 
-"let g:used_javascript_libs = 'jquery,angularjs,backbone'
+autocmd FileType javascript let b:syntastic_javascript_eslint_args =
+    \ get(g:, 'syntastic_javascript_eslint_args', '') .
+    \ FindConfig('-c', '.eslintrc.json', expand('<afile>:p:h', 1))
+" for eslint
+let g:formatdef_eslint = '"SRC=eslint-temp-${RANDOM}.js; cat - >$SRC; eslint --fix $SRC >/dev/null 2>&1; cat $SRC | perl -pe \"chomp if eof\"; rm -f $SRC"'
+
+let g:formatters_javascript = ['eslint']
+let g:formatters_vue = ['eslint']
 
 
 " for 'ctrlpvim/ctrlp.vim'
@@ -294,6 +327,8 @@ let g:ctrlp_custom_ignore = {
 " for 'pangloss/vim-javascript'
 let g:javascript_plugin_jsdoc = 1
 
+" for Plugin 'posva/vim-vue'
+autocmd FileType vue syntax sync fromstart
 
 " ------------------其他函数------------------
 
