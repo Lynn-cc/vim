@@ -92,7 +92,7 @@ else
     set guifont=Monaco:h14
 
     " mac替换ESC
-    " inoremap ` <ESC>
+    inoremap ` <ESC>
 
     " 快捷载入vimrc
     nmap <leader>s <ESC>:source ~/.vim/.vimrc<CR>
