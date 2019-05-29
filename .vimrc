@@ -4,7 +4,6 @@ set encoding=utf-8               "vim内部编码
 set fileencoding=utf-8           "保存时,文件的编码格式
 set termencoding=utf-8           "终端编码
 language messages zh_CN.UTF-8    "提示信息中文
-
 "source $VIMRUNTIME/vimrc_example.vim
 set nocompatible                      " 关闭 vi 兼容模式
 syntax on                             " 自动语法高亮
@@ -92,7 +91,7 @@ else
     set guifont=Monaco:h14
 
     " mac替换ESC
-    " inoremap ` <ESC>
+    inoremap ` <ESC>
 
     " 快捷载入vimrc
     nmap <leader>s <ESC>:source ~/.vim/.vimrc<CR>

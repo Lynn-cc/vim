@@ -55,7 +55,7 @@ if has("gui_running")
     highlight Pmenu guibg=#333333 guifg=#000000
     highlight PmenuSel guifg=#333333
     "highlight CursorLine guibg=#666633 "高亮当前行
-    
+
     highlight Noise guifg=#666666
 
     "垂直分割线
