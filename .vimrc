@@ -4,6 +4,7 @@ set encoding=utf-8               "vim内部编码
 set fileencoding=utf-8           "保存时,文件的编码格式
 set termencoding=utf-8           "终端编码
 language messages zh_CN.UTF-8    "提示信息中文
+
 "source $VIMRUNTIME/vimrc_example.vim
 set nocompatible                      " 关闭 vi 兼容模式
 syntax on                             " 自动语法高亮
@@ -174,7 +175,7 @@ if (has("win32") || has("win64") || has("win32unix"))
     set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
     call vundle#begin('$HOME/vimfiles/bundle/')
 else
-    set rtp+=~/.vim/bundle/vundle/
+    set rtp+=~/.vim/bundle/Vundle.vim/
     call vundle#begin('~/.vim/bundle/')
 endif
 
@@ -197,7 +198,7 @@ Plugin 'mattn/emmet-vim'
 "Plugin 'Tagbar'
 "Plugin 'Conque-Shell'
 "Plugin 'Command-T'
-Plugin 'Lokaltog/vim-powerline'
+"Plugin 'powerline/powerline'
 "Plugin 'ternjs/tern_for_vim'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -276,7 +277,7 @@ execute pathogen#infect()
 "let g:mou_dir = "/Applications/Mou.app"
 
 "powerline
-let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'fancy'
 
 " ruanyl/vim-fixmyjs
 let g:fixmyjs_engine = 'eslint'
@@ -343,7 +344,9 @@ function! SetColorColumn()
     endif
 endfunction
 
-set diffexpr=MyDiff()
+
+if (has("win32") || has("win64") || has("win32unix"))
+    set diffexpr=MyDiff()
  function! MyDiff()
    let opt = '-a --binary '
    if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
@@ -372,3 +375,4 @@ set diffexpr=MyDiff()
      let &shellxquote=l:shxq_sav
    endif
  endfunction
+endif
